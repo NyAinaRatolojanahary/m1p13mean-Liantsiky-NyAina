@@ -1,9 +1,9 @@
 # m1p13mean-Liantsiky-NyAina
 
-# Development
+## Development
 
-docker compose -f docker-compose.dev.yml up --build
+`docker compose -f docker-compose.dev.yml up --build`
 
-# Prod
+## Prod
 
-docker compose -f docker-compose.prod.yml up -d
+`docker compose -f docker-compose.prod.yml up -d`
