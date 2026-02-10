@@ -1,0 +1,28 @@
+# ---- base ----
+FROM node:18-alpine AS base
+WORKDIR /app
+COPY package*.json ./
+
+# ---- deps ----
+FROM base AS deps
+RUN npm install
+
+# ---- dev ----
+FROM deps AS dev
+COPY . .
+ENV NODE_ENV=development
+CMD ["npm", "run", "dev"]
+
+# ---- build ----
+FROM deps AS build
+COPY . .
+RUN npm run build
+
+# ---- prod ----
+FROM node:18-alpine AS prod
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/dist ./dist
+COPY --from=deps /app/node_modules ./node_modules
+EXPOSE 3000
+CMD ["node", "dist/main.js"]

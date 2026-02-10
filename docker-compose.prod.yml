@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: mean-mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    container_name: mean-backend
+    build:
+      context: ./backend
+      target: prod
+    restart: always
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://mongo:27017/mean-db
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+
+  frontend:
+    container_name: mean-frontend
+    build:
+      context: ./frontend
+      target: prod
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
