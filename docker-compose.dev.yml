@@ -29,14 +29,14 @@ services:
   frontend:
     container_name: mean-frontend
     build:
-      context: ./frontend
+      context: ./frontend/mean-frontend
       target: dev
     ports:
       - "4200:4200"
     depends_on:
       - backend
     volumes:
-      - ./frontend:/app
+      - ./frontend/mean-frontend:/app
       - /app/node_modules
     command: npm start
 

@@ -6,6 +6,7 @@ COPY package*.json ./
 # ---- deps ----
 FROM base AS deps
 RUN npm install
+RUN npm install -g nodemon
 
 # ---- dev ----
 FROM deps AS dev
