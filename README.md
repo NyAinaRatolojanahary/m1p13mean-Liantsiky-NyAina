@@ -1,2 +1,9 @@
 # m1p13mean-Liantsiky-NyAina
-Projet Web Avance MEAN 
+
+# Development
+
+docker compose -f docker-compose.dev.yml up --build
+
+# Prod
+
+docker compose -f docker-compose.prod.yml up -d
