@@ -1,11 +1,12 @@
 # ---- base ----
-FROM node:18-alpine AS base
+FROM node:18-bullseye AS base
 WORKDIR /app
 COPY package*.json ./
 
 # ---- deps ----
 FROM base AS deps
 RUN npm install
+
 
 # ---- dev ----
 FROM deps AS dev
