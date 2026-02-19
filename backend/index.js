@@ -6,7 +6,10 @@ const connectDB = require('./config/db');
 const authMiddlware = require('./middlewares/authMiddleware');
 const roleMiddlware = require('./middlewares/roleMiddleware');
 
+const ROLES = require('./constants/roles');
+
 const authRouter = require('./routes/authRoute');
+const userRouter = require('./routes/UtilisateurRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,8 +27,9 @@ app.get('/', (req, resp) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
-app.get('/test/:nbr', authMiddlware,roleMiddlware(10), (req, resp) => {
+app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {
     resp.setHeader('Content-Type','text/plain');
     resp.send("Bonjour sur le test : " + req.params.nbr);
 });
