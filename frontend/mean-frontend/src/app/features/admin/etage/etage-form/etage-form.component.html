@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="col-xl-6">
+    <div class="card stretch stretch-full">
+      <div class="card-body">
+
+        <h4 class="mb-4">Créer un étage</h4>
+
+        <form [formGroup]="etageForm" (ngSubmit)="submit()">
+
+          <app-form-input
+            label="Nom"
+            placeholder="Nom de l'étage"
+            [required]="true"
+            [control]="etageForm.controls.nom">
+          </app-form-input>
+
+          <app-form-input
+            label="Nombre"
+            placeholder="Nombre"
+            [required]="true"
+            [control]="etageForm.controls.nombre">
+          </app-form-input>
+
+          <button class="btn btn-primary">
+            Enregistrer
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
