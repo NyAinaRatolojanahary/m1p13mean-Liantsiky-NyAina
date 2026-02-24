@@ -15,6 +15,7 @@ const stageRouter = require('./routes/etageRoute');
 const boxRouter = require('./routes/boxRoute');
 const shopRouter = require('./routes/boutiqueRoute');
 const productRouter = require('./routes/produitRoute');
+const etageRouter = require('./routes/etageRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,6 +40,8 @@ app.use('/stage', stageRouter);
 app.use('/box', boxRouter);
 app.use('/shop', shopRouter);
 app.use('/product', productRouter)
+app.use('/etage', etageRouter);
+
 
 
 app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {

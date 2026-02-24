@@ -1,0 +1,30 @@
+.logo-lg {
+  width: 150px;
+  height: auto;
+}
+
+.nxl-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.nxl-item.active > .nxl-submenu {
+  max-height: 500px; /* or a large enough number to fit content */
+}
+
+/* Highlight parent on hover */
+.nxl-item > .nxl-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Highlight child on hover */
+.nxl-submenu .nxl-item > .nxl-link:hover {
+  background-color: #e0e0e0;
+}
+
+/* Indent child items */
+.nxl-submenu {
+  padding-left: 20px;
+}
