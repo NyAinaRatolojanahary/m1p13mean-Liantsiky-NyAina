@@ -10,6 +10,11 @@ const ROLES = require('./constants/roles');
 
 const authRouter = require('./routes/authRoute');
 const userRouter = require('./routes/UtilisateurRoute');
+const productCategorieRouter = require('./routes/categorieProduitRoute');
+const stageRouter = require('./routes/etageRoute');
+const boxRouter = require('./routes/boxRoute');
+const shopRouter = require('./routes/boutiqueRoute');
+const productRouter = require('./routes/produitRoute');
 const etageRouter = require('./routes/etageRoute');
 
 const app = express();
@@ -29,6 +34,12 @@ app.get('/', (req, resp) => {
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/uploads', express.static('uploads'));
+app.use('/product-category', productCategorieRouter);
+app.use('/stage', stageRouter);
+app.use('/box', boxRouter);
+app.use('/shop', shopRouter);
+app.use('/product', productRouter)
 app.use('/etage', etageRouter);
 
 
