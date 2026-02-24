@@ -1,0 +1,25 @@
+ <div class="table-responsive">
+    <table class="table table-hover mb-0">
+        <!-- Header -->
+        <thead>
+            <tr *ngFor="let header of tableData.header" class="border-b">
+                <th scope="row">{{ header }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of tableData.data" class="border-b">
+                <td>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-image">
+                            <img src="assets/images/avatar/2.png" alt="" class="img-fluid">
+                        </div>
+                        <a href="javascript:void(0);">
+                            <span class="d-block">Archie Cantones</span>
+                            <span class="fs-12 d-block fw-normal text-muted">{{ row[1] }}</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

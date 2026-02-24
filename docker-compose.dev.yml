@@ -25,6 +25,7 @@ services:
       - ./backend:/app
       - /app/node_modules
     command: npm run dev
+    user: "1000:1000"
 
   frontend:
     container_name: mean-frontend
@@ -39,6 +40,8 @@ services:
       - ./frontend/mean-frontend:/app
       - /app/node_modules
     command: npm start
+    user: "1000:1000"
+
 
 volumes:
   mongo_data:
