@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.css",
               "src/assets/template/css/bootstrap.min.css",
-              "src/assets/template/css/theme.min.css"
+              "src/assets/template/css/theme.min.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
+
             ],
             "scripts": [
               "src/assets/template/js/bootstrap.min.js"
@@ -67,6 +69,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": [
+              "all"
+            ],
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "mean-frontend:build:production"

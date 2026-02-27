@@ -1,0 +1,25 @@
+<div class="mb-3">
+  <label *ngIf="label" class="form-label">
+    {{ label }}
+    <span *ngIf="required" class="text-danger">*</span>
+  </label>
+
+  <ng-select
+    [items]="options"
+    [bindLabel]="optionLabel"
+    [bindValue]="optionValue"
+    [placeholder]="placeholder">
+    <!-- <option value="" disabled>
+      {{ placeholder }}
+    </option>
+
+    <option
+      *ngFor="let opt of options"
+      [value]="opt[optionValue]">
+
+      {{ opt[optionLabel] }}
+
+    </option> -->
+
+  </ng-select>
+</div>
