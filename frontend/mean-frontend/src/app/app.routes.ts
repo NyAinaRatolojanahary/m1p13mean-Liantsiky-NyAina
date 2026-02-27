@@ -17,8 +17,34 @@ export const routes: Routes = [
             path: 'etage/create',
             loadComponent: () =>
             import('./features/admin/etage/pages/etage-form/etage-form.component')
-            .then(m => m.EtageFormComponent)
-        }
+            .then(m => m.EtageFormComponent),
+            runGuardsAndResolvers: 'always'
+
+        },
+        {
+            path: 'etage/list',
+            loadComponent: () =>
+            import('./features/admin/etage/pages/etage-list/etage-list.component')
+            .then(m => m.EtageListComponent),
+            runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'box/create',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-form/box-form.component')
+            .then(m => m.BoxFormComponent),
+              runGuardsAndResolvers: 'always'
+
+        },
+        {
+            path: 'box/list',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-list/box-list.component')
+            .then(m => m.BoxListComponent),
+              runGuardsAndResolvers: 'always'
+
+        },
+        
 
     ]
   }
