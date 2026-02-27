@@ -16,15 +16,27 @@ const boxRouter = require('./routes/boxRoute');
 const shopRouter = require('./routes/boutiqueRoute');
 const productRouter = require('./routes/produitRoute');
 const etageRouter = require('./routes/etageRoute');
+const boxRouter = require('./routes/boxRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const frontEndOrigin = [
+    "http://0.0.0.0:4200",
+    "http://localhost:4200",
+    "http://127.0.0.1:4200"
+];
 
+const corpsOptions = {
+    origin: frontEndOrigin,
+    optionsSuccessStatus: 200
+};
 // Connexion DB
 connectDB();
 
+
+
 // Middlewares globaux
-app.use(cors());
+app.use(cors(corpsOptions));
 app.use(express.json());
 
 // Routes
@@ -40,8 +52,8 @@ app.use('/stage', stageRouter);
 app.use('/box', boxRouter);
 app.use('/shop', shopRouter);
 app.use('/product', productRouter)
-app.use('/etage', etageRouter);
-
+app.use('/api/etage', etageRouter);
+app.use('/api/box', boxRouter);
 
 
 app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {
@@ -55,6 +67,6 @@ app.use((req, resp) => {
 });
 
 // Start server
-app.listen(PORT, () => 
+app.listen(PORT,'0.0.0.0', () => 
     console.log(`Serveur demarre sur le port ${PORT}`)
 );

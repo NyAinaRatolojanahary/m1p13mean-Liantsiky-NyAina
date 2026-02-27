@@ -11,5 +11,7 @@ router.get('/paginated', authMiddleware, roleMiddlware(ROLES.ADMIN), etageContro
 router.get('/:id', authMiddleware, roleMiddlware(ROLES.ADMIN), etageController.getEtageByID);
 router.put('/update/:id', authMiddleware, roleMiddlware(ROLES.ADMIN), etageController.updateEtage);
 router.post('/create', etageController.createEtage);
+router.get('/all', etageController.getAllEtages);
+router.get('/', etageController.getAllEtagesPaginated);
 
 module.exports = router;

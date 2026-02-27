@@ -5,6 +5,7 @@ import { FormInputComponent } from '../../../../../shared/components/form/form-i
 import { EtageService } from '../../services/etage.service';
 import { Etage } from '../../models/etage.model';
 
+
 @Component({
   selector: 'app-etage-form',
   templateUrl: './etage-form.component.html',
