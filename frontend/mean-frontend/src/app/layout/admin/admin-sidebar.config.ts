@@ -14,14 +14,17 @@ export const ADMIN_MENU: SidebarItem[] = [
     icon: 'package',
     children: [
       { label: 'Creer', route: '/admin/etage/create' },
-      { label: 'Create', route: '/admin/etage-form/create' }
+      { label: 'Liste', route: '/admin/etage/list' }
     ]
   },
 
-  {
-    label: 'Customers',
-    icon: 'users',
-    route: '/admin/customers'
-  }
+ {
+    label: 'Box',
+    icon: 'package',
+    children: [
+      { label: 'Creer', route: '/admin/box/create' },
+      { label: 'Liste', route: '/admin/box/list' }
+    ]
+  },
 
 ];

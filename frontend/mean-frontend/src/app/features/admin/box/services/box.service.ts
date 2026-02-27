@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Etage } from '../models/etage.model';
+import { Box } from '../models/box.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EtageService {
-  private apiUrl = '/api/etage';
 
-  constructor(private http: HttpClient) {}
+export class BoxService {
+  private apiUrl ='/api/box';
 
-  create(etage: Etage): Observable<Etage> {
-    return this.http.post<Etage>(this.apiUrl + '/create', etage);
+  constructor(private http: HttpClient) { }
+
+  create(box: Box): Observable<Box> {
+    return this.http.post<Box>(this.apiUrl + '/create', box);
   }
 
   getAll() {
     var result = null;
-    result = this.http.get<Etage[]>( this.apiUrl + '/all');
+    result = this.http.get<Box[]>( this.apiUrl + '/all');
     return result;
   }
-
+  
   getAllPaginated(page: number, limit: number) {
     return this.http.get<any>( `${this.apiUrl}?page=${page}&limit=${limit}`);
   }
+  
 }
+
+  
