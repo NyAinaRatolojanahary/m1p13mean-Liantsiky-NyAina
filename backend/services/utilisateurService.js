@@ -86,6 +86,31 @@ exports.getAllUsersPaginated = async (page = 1, limit = 10) => {
   };
 };
 
+exports.getAllShopUserPaginated = async (page = 1, limit = 10) => {
+  const skip = (page - 1) * limit;
+  const role = await Role.findOne({ status: 10 });
+  const filter = { role: new mongoose.Types.ObjectId(role._id) };
+
+  const [users, total] = await Promise.all([
+    Utilisateur.find(filter)
+      .populate('role', 'nom status')
+      .skip(skip)
+      .limit(limit)
+      .sort({ dateCreation: -1 }),
+    Utilisateur.countDocuments(filter)
+  ]);
+
+  return {
+    data: users,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    }
+  };
+};
+
 exports.getAllUsersByStatusPaginated = async (roleId, page = 1, limit = 10) => {
   const skip = (page - 1) * limit;
 
