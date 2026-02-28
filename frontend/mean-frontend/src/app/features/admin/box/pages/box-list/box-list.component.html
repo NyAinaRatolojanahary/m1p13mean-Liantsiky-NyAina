@@ -11,7 +11,9 @@
     [loading]="loading"
     [page]="page"
     [totalPages]="totalPages"
-    (pageChange)="onPageChange($event)">
+    [action] = "action"
+    (pageChange)="onPageChange($event)"
+    (actionClick)="goToChangeLoyer($event)">
     
   </app-table-one>
 

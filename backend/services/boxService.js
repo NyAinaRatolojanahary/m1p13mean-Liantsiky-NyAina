@@ -1,5 +1,6 @@
 const Box = require('../models/Box');
 const mongoose = require('mongoose');
+const LoyerBoxService = require('./loyerBoxService');
 
 exports.getAllBoxes = async () => {
   return await Box.find()
@@ -51,23 +52,42 @@ exports.createBox = async (data) => {
   return box;
 };
 
-exports.updateBox = async (id, updates) => {
+exports.updateBox = async (id, updates,dateApplication) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     throw new Error("ID invalide");
   }
 
-  const result = await Box.updateOne(
-    { _id: id },
-    { $set: updates }
-  );
+  try {
+    const existingBox = await Box.findById(id);
+    
+    if (!existingBox) {
+      throw new Error("Box introuvable");
+    }
 
-  if (result.matchedCount === 0) {
-    throw new Error("Box introuvable");
+    const result = await Box.updateOne(
+      { _id: id },
+      { $set: updates }
+    );
+    //verify if loyer has changed and if so, create a new LoyerBox entry
+    if(updates.loyer !== undefined && updates.loyer !== existingBox.loyer) {
+      await LoyerBoxService.createLoyerBox({
+        loyer: updates.loyer,
+        boxId: id,
+        dateApplication: dateApplication || new Date()
+      });
+    }
+    return result;
+
+  } catch (error) {
+    throw error;
   }
 
-  return result;
+  
 };
 
+// if (result.matchedCount === 0) {
+//   throw new Error("Box introuvable");
+// }
 exports.getBoxByID = async (id) => {
   const mongoose = require('mongoose');
 

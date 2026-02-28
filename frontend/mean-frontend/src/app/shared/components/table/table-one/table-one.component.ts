@@ -17,12 +17,21 @@ export class TableOneComponent {
   // pagination inputs
   @Input() page = 1;
   @Input() totalPages = 1;
+  @Input() action :string = 'Edit';
 
-  // notify parent when page changes
+
+  // notify parent when page changes pagination
   @Output() pageChange = new EventEmitter<number>();
 
   changePage(p: number) {
     if (p < 1 || p > this.totalPages) return;
     this.pageChange.emit(p);
+  }
+
+  //action button click
+  @Output() actionClick = new EventEmitter<any>();
+
+  onActionClick(row: any) {
+    this.actionClick.emit(row);
   }
 }
