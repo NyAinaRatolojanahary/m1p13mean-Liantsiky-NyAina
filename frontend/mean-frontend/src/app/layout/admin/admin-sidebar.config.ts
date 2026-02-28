@@ -26,5 +26,13 @@ export const ADMIN_MENU: SidebarItem[] = [
       { label: 'Liste', route: '/admin/box/list' }
     ]
   },
+  {
+    label: 'Utilisateur',
+    icon: 'users',
+    children: [
+      { label: 'Creer', route: '/admin/userShop/create' },
+      { label: 'Liste', route: '/admin/user/list' }
+    ]
+  },
 
 ];

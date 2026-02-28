@@ -50,6 +50,20 @@ export const routes: Routes = [
             import('./features/admin/box/pages/box-loyer-form/box-loyer-form.component')
             .then(m => m.BoxLoyerFormComponent),
               runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'userShop/create',
+            loadComponent: () =>
+            import('./features/admin/shopUser/pages/shop-user-form/shop-user-form.component')
+            .then(m => m.ShopUserFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'user/list',
+            loadComponent: () =>
+            import('./features/admin/shopUser/pages/shop-user-list/shop-user-list.component')
+            .then(m => m.ShopUserListComponent),
+              runGuardsAndResolvers: 'always'
         }
 
     ]

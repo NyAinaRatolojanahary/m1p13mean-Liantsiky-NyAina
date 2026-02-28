@@ -43,7 +43,7 @@ app.get('/', (req, resp) => {
 });
 
 app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/api/user', userRouter);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/product-category', productCategorieRouter);
 app.use('/api/box', boxRouter);

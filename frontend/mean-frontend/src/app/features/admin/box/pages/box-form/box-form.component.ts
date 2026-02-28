@@ -58,7 +58,7 @@ export class BoxFormComponent implements OnInit {
     this.boxService.create(newBox)
       .subscribe({
         next: (res) => {
-          console.log('Box created:', res);
+          console.log('Box created:');
           this.boxForm.reset();
         },
         error: (err) => {
