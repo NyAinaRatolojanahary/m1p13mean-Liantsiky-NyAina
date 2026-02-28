@@ -32,8 +32,9 @@
                     {{ row[col.field] }}
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-sm btn-outline-primary me-2">
-                        Edit
+                        <button class="btn btn-sm btn-outline-primary me-2"
+                        (click)="onActionClick(row)">
+                      {{ action }}
                         </button>
                     </td>
 

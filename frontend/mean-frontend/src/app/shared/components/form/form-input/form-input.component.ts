@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 
 })
 export class FormInputComponent {
-
   @Input() label!: string;
   @Input() placeholder: string = '';
   @Input() type: string = 'text';

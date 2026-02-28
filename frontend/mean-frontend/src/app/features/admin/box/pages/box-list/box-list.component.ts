@@ -22,6 +22,7 @@ export class BoxListComponent implements OnInit{
     { header: 'Loyer (AR)', field: 'loyer' },
     { header: 'Etage', field: 'nom' },
   ];
+  action = 'Change Loyer';
 
   page = 1;
   totalPages = 1;
@@ -48,6 +49,11 @@ export class BoxListComponent implements OnInit{
         this.page = res.pagination.page;
         this.loading = false;
       });
+  }
+
+  goToChangeLoyer(box: any) {
+    console.log('Go to change loyer for box', box);
+    this.router.navigate(['/admin/box-loyer/', box._id]);
   }
 
   onPageChange(newPage: number) {

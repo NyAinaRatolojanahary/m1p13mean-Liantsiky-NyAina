@@ -47,7 +47,8 @@ exports.createBox = async (req, res) => {
 
 exports.updateBox = async (req, res) => {
   try {
-    const result = await boxService.updateBox(req.params.id, req.body);
+    const  {dateApplication, ...updates} = req.body;
+    const result = await boxService.updateBox(req.params.id, updates, dateApplication);
 
     res.status(200).json({
       success: true,

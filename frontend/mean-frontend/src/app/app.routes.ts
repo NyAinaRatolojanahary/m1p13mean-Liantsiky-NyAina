@@ -44,7 +44,13 @@ export const routes: Routes = [
               runGuardsAndResolvers: 'always'
 
         },
-        
+        {
+            path: 'box-loyer/:id',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-loyer-form/box-loyer-form.component')
+            .then(m => m.BoxLoyerFormComponent),
+              runGuardsAndResolvers: 'always'
+        }
 
     ]
   }
