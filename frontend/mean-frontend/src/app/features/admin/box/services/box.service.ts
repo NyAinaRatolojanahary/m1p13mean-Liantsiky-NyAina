@@ -25,6 +25,10 @@ export class BoxService {
   getAllPaginated(page: number, limit: number) {
     return this.http.get<any>( `${this.apiUrl}?page=${page}&limit=${limit}`);
   }
+
+  updateLoyer(id: string, data: any) {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
   
 }
 

@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="col-xl-6">
+    <div class="card stretch stretch-full">
+      <div class="card-body">
+
+        <h4 class="mb-4">Créer une box</h4>
+
+        <form [formGroup]="loyerForm" (ngSubmit)="submit()">
+
+          <app-form-input
+            [control]="loyerForm.controls.loyer"
+            label="Nouveau loyer"
+            type = "number"
+            placeholder="Nouveau loyer">
+          </app-form-input>
+
+        <app-form-input
+            [control]="loyerForm.controls.dateApplication"
+            label="Date d'application du nouveau loyer"
+            type = "date"
+            placeholder="Date d'application du nouveau loyer">
+        </app-form-input>
+          <button class="btn btn-primary" type="submit">
+            Valider
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
