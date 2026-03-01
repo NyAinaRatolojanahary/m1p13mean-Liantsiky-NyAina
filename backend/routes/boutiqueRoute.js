@@ -9,7 +9,8 @@ router.get('/', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.
 router.get('/paginated', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getAllBoutiquePaginated);
 router.get('/stage/:idStage', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getBoutiquePerStage);
 router.get('/:id', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getBoutiqueByID);
-router.post('/create', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.createBoutique);
+// router.post('/create', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.createBoutique);
+router.post('/create', boutiqueController.createBoutique);
 router.put('/update/:id', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.updateBoutique);
 
 module.exports = router;
