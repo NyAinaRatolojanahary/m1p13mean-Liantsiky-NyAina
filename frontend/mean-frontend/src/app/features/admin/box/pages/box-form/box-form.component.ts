@@ -33,7 +33,7 @@ export class BoxFormComponent implements OnInit {
     nom : new FormControl(''),
     espacem2 : new FormControl(''),
     loyer : new FormControl(''),
-    etageid : new FormControl('')
+    etageId : new FormControl('')
   });
 
   ngOnInit() {
@@ -52,8 +52,9 @@ export class BoxFormComponent implements OnInit {
       nom: formValue.nom || '',
       espacem2: Number(formValue.espacem2),
       loyer: Number(formValue.loyer),
-      etageid: formValue.etageid || ''
+      etageId: formValue.etageId || ''
     };
+    console.log('Submitting box:', newBox);
 
     this.boxService.create(newBox)
       .subscribe({
