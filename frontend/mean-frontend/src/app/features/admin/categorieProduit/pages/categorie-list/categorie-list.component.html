@@ -1,0 +1,21 @@
+<p>categorie-list works!</p>
+<div class="container mt-4">
+
+  <div class="card">
+  <div class="card-header">
+    <h5>Liste des Categories</h5>
+  </div>
+
+  <app-table-one
+    [columns]="columns"
+    [data]="categories"
+    [loading]="loading"
+    [page]="page"
+    [totalPages]="totalPages"
+    (pageChange)="onPageChange($event)">
+    
+  </app-table-one>
+
+</div>
+</div>
+
