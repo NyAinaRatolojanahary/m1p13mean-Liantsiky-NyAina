@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 })
 
 export class BoxService {
+  constructor(private http: HttpClient) { }
+  
   private apiUrl ='/api/box';
 
-  constructor(private http: HttpClient) { }
 
   create(box: Box): Observable<Box> {
     return this.http.post<Box>(this.apiUrl + '/create', box);

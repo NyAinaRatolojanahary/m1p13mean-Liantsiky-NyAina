@@ -95,10 +95,7 @@ exports.getAllCategorieProduitByStatusPaginated = async (req, res) => {
         limit
       );
 
-    res.status(200).json({
-      success: true,
-      ...result
-    });
+    res.status(200).json(result);
 
   } catch (error) {
     res.status(500).json({
@@ -137,3 +134,22 @@ exports.updateCategorieProduit = async (req, res) => {
     });
   }
 };
+
+exports.createStatusActive = async (req, res) => {
+  try {
+    
+
+    const status = await categorieProduitService.createStatusActive(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: status
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+}

@@ -35,6 +35,14 @@ export const ADMIN_MENU: SidebarItem[] = [
     ]
   },
   {
+    label: 'Categorie Produit',
+    icon: 'grid',
+    children: [
+      { label: 'Creer', route: '/admin/categorie-produit/create' },
+      { label: 'Liste', route: '/admin/categorie-produit/list' }
+    ]
+  },
+  {
     label: 'Utilisateur',
     icon: 'users',
     children: [

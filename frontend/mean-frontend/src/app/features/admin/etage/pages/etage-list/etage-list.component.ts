@@ -11,6 +11,10 @@ import { Router} from '@angular/router';
   templateUrl: './etage-list.component.html'
 })
 export class EtageListComponent implements OnInit {
+  constructor(
+    private etageService: EtageService,
+    private router : Router
+  ) {}
   etages: any[] = [];
   loading = false;
     
@@ -24,10 +28,6 @@ export class EtageListComponent implements OnInit {
   limit = 2;
 
 
-  constructor(
-    private etageService: EtageService,
-    private router : Router
-  ) {}
 
   ngOnInit(): void {
     this.loadData();
