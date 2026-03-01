@@ -5,5 +5,5 @@ export interface Box {
     nom: string;
     espacem2: number;
     loyer : number;
-    etageid?: string | Etage; // Add etageid to Box model
+    etageId?: string | Etage; // Add etageid to Box model
 }

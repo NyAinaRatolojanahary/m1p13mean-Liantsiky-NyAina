@@ -34,8 +34,8 @@ export class BoutiqueFormComponent implements OnInit {
   boutiqueForm = new FormGroup({
     nom : new FormControl(''),
     description : new FormControl(''),
-    boxid : new FormControl(''),
-    shopUserId : new FormControl(''),
+    boxId : new FormControl(''),
+    proprietaireId : new FormControl(''),
     dateCreation : new FormControl(new Date()),
   })
 
@@ -50,8 +50,8 @@ export class BoutiqueFormComponent implements OnInit {
       const newBoutique: Boutique = {
         nom: formValue.nom || '',
         description: formValue.description || '',
-        proprietaire: formValue.shopUserId || '',
-        box: formValue.boxid || '',
+        proprietaireId: formValue.proprietaireId || '',
+        boxId: formValue.boxId || '',
         dateCreation: formValue.dateCreation || new Date()
       };
   

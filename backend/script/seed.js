@@ -12,6 +12,7 @@ db.boutiques.deleteMany({})
 db.categorieproduits.deleteMany({})
 db.produits.deleteMany({})
 db.statusdisponibilites.deleteMany({})
+db.loyerboxes.deleteMany({})
 
 // =======================================
 // ROLES

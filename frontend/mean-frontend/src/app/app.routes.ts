@@ -71,6 +71,13 @@ export const routes: Routes = [
             import('./features/admin/boutique/pages/boutique-form/boutique-form.component')
             .then(m => m.BoutiqueFormComponent),
               runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'boutique/list',
+            loadComponent: () =>
+            import('./features/admin/boutique/pages/boutique-list/boutique-list.component')
+            .then(m => m.BoutiqueListComponent),
+              runGuardsAndResolvers: 'always'
         }
 
     ]

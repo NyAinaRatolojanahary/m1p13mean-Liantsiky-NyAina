@@ -12,4 +12,8 @@ export class BoutiqueService {
   create(boutique : Boutique) {
     return this.http.post(this.apiUrl + '/create', boutique);
   }
+
+  getAllPaginated(page: number, limit: number) {
+    return this.http.get<any>( `${this.apiUrl}?page=${page}&limit=${limit}`);
+  }
 }
