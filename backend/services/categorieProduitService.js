@@ -1,13 +1,23 @@
 const mongoose = require('mongoose');
 const CategorieProduit = require('../models/CategorieProduit');
+const StatusActive = require('../models/StatusActive');
 
 exports.createCategorieProduit = async (data) => {
+  if (!data.status) {
+    const defaultStatus = await StatusActive.findOne({ code: 10 });
 
-    const categorie = await CategorieProduit.create({
-        nom: data.nom,
-        image: data.image,
-        status: data.status
-    });
+    if (!defaultStatus) {
+        throw new Error('Default status (code 10) not found');
+    }
+    
+    data.status = defaultStatus._id;
+  }
+
+  const categorie = await CategorieProduit.create({
+    nom: data.nom,
+    image: data.image,
+    status: data.status
+  });
 
   return categorie;
 };
@@ -80,4 +90,14 @@ exports.updateCategorieProduit = async (data) => {
   );
 
   return result;
+};
+
+exports.createStatusActive = async (data) => {
+  const existingStatus = await StatusActive.findOne({ nom: data.nom });   
+      if (existingStatus) throw new Error('Status Active déja existant');
+      const status = await StatusActive.create({
+          nom: data.nom,
+          code: data.code
+      });
+      return status;
 };

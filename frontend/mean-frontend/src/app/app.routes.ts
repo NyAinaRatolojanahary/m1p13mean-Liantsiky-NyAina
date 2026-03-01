@@ -78,6 +78,20 @@ export const routes: Routes = [
             import('./features/admin/boutique/pages/boutique-list/boutique-list.component')
             .then(m => m.BoutiqueListComponent),
               runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'categorie-produit/create',
+            loadComponent: () =>
+            import('./features/admin/categorieProduit/pages/categorie-form/categorie-form.component')
+            .then(m => m.CategorieFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'categorie-produit/list',
+            loadComponent: () =>
+            import('./features/admin/categorieProduit/pages/categorie-list/categorie-list.component')
+            .then(m => m.CategorieListComponent),
+              runGuardsAndResolvers: 'always'
         }
 
     ]
