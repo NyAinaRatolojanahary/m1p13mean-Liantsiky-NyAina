@@ -14,8 +14,11 @@ router.get('/status-paginated/',authMiddleware, roleMiddlware(ROLES.ADMIN), Util
 // router.post('/new-shop', authMiddleware, roleMiddlware(ROLES.ADMIN), UtilisateurController.createShopUser);
 router.post('/new-admin', authMiddleware, roleMiddlware(ROLES.ADMIN), UtilisateurController.createAdminUser);
 router.put('/update',authMiddleware, roleMiddleware(ROLES.ADMIN), UtilisateurController.updateUserInfo);
+
+//without middleware
 router.post('/new-shop-user', UtilisateurController.createShopUser);
 router.get('/shop-user/', UtilisateurController.getAllShopUsersPaginated);
+router.get('/shop-user/all', UtilisateurController.getAllShopUsers);
 
 
 module.exports = router;

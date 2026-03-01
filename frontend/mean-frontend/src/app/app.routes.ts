@@ -64,6 +64,13 @@ export const routes: Routes = [
             import('./features/admin/shopUser/pages/shop-user-list/shop-user-list.component')
             .then(m => m.ShopUserListComponent),
               runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'boutique/create',
+            loadComponent: () =>
+            import('./features/admin/boutique/pages/boutique-form/boutique-form.component')
+            .then(m => m.BoutiqueFormComponent),
+              runGuardsAndResolvers: 'always'
         }
 
     ]

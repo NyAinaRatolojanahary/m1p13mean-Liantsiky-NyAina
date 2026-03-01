@@ -11,6 +11,7 @@ db.boxes.deleteMany({})
 db.boutiques.deleteMany({})
 db.categorieproduits.deleteMany({})
 db.produits.deleteMany({})
+db.statusdisponibilites.deleteMany({})
 
 // =======================================
 // ROLES
@@ -165,5 +166,6 @@ boutiques.forEach(boutique => {
     }
   })
 })
+
 
 print("✅ SEED TERMINE AVEC SUCCES")

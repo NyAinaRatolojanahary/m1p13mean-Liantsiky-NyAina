@@ -50,7 +50,6 @@ app.use('/api/box', boxRouter);
 app.use('/api/shop', shopRouter);
 app.use('/api/product', productRouter)
 app.use('/api/etage', etageRouter);
-app.use('/api/box', boxRouter);
 
 
 app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {

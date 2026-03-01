@@ -110,6 +110,17 @@ exports.getAllShopUserPaginated = async (page = 1, limit = 10) => {
     }
   };
 };
+exports.getAllShopUser = async () => {
+  const role = await Role.findOne({ status: 10 });
+  const filter = { role: new mongoose.Types.ObjectId(role._id) };
+
+  return await Utilisateur.find(filter)
+      .select('-password')
+      .populate('role', 'nom status')
+      .sort({ dateCreation: -1 });
+
+  // return users;
+};
 
 exports.getAllUsersByStatusPaginated = async (roleId, page = 1, limit = 10) => {
   const skip = (page - 1) * limit;

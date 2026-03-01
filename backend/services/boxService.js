@@ -1,10 +1,12 @@
 const Box = require('../models/Box');
+const StatusDisponibilite = require('../models/StatusDisponibilite');
 const mongoose = require('mongoose');
 const LoyerBoxService = require('./loyerBoxService');
 
 exports.getAllBoxes = async () => {
   return await Box.find()
     .populate('etageId')
+    .populate('status')
     .sort({ _id: -1 });
 };
 
@@ -14,6 +16,7 @@ exports.getAllBoxesPaginated = async (page = 1, limit = 10) => {
   const [data, total] = await Promise.all([
     Box.find()
       .populate('etageId')
+      .populate('status')
       .skip(skip)
       .limit(limit)
       .sort({ _id: -1 }),
@@ -42,13 +45,32 @@ exports.getBoxesPerStage = async (idStage) => {
 };
 
 exports.createBox = async (data) => {
+
+  if (!data.status) {
+
+    const defaultStatus = await StatusDisponibilite.findOne({ code: 10 });
+
+    if (!defaultStatus) {
+      throw new Error('Default status (code 10) not found');
+    }
+
+    data.status = defaultStatus._id;
+  }
+
   const box = await Box.create({
     nom: data.nom,
     espacem2: data.espacem2,
     loyer: data.loyer,
-    etageId: data.etageId
+    etageId: data.etageId,
+    status: data.status
   });
 
+  await LoyerBoxService.createLoyerBox({
+    loyer: box.loyer,
+    boxId: box._id,
+    dateApplication: data.dateApplication || Date.now()
+  });
+  
   return box;
 };
 
@@ -85,9 +107,6 @@ exports.updateBox = async (id, updates,dateApplication) => {
   
 };
 
-// if (result.matchedCount === 0) {
-//   throw new Error("Box introuvable");
-// }
 exports.getBoxByID = async (id) => {
   const mongoose = require('mongoose');
 
@@ -102,4 +121,14 @@ exports.getBoxByID = async (id) => {
   }
 
   return box;
-};
+}
+
+exports.createStatusDisponibilite = async (data) => {
+    const existingStatus = await StatusDisponibilite.findOne({ nom: data.nom });   
+    if (existingStatus) throw new Error('Status Disponibilite déja existant');
+    const status = await StatusDisponibilite.create({
+        nom: data.nom,
+        code: data.code
+    });
+    return status;
+}
