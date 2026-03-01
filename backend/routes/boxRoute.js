@@ -6,5 +6,6 @@ router.post('/create', boxController.createBox);
 router.put('/:id', boxController.updateBox);
 router.get('/all', boxController.getAllBoxes);
 router.get('/', boxController.getAllBoxesPaginated);
+router.post('/statuscreate', boxController.createStatusDisponibilite);
 
 module.exports = router;

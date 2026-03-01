@@ -17,4 +17,8 @@ export class ShopUserService {
   getShopUsersPaginated(page: number, limit: number) {
     return this.http.get<any>( `${this.apiUrl}/shop-user?page=${page}&limit=${limit}`);
   }
+
+  getAllShopUsers() {
+    return this.http.get<ShopUser[]>( this.apiUrl + '/shop-user/all');
+  }
 }

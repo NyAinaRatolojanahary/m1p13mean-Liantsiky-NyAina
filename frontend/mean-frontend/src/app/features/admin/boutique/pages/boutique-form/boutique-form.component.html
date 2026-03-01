@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="col-xl-6">
+    <div class="card stretch stretch-full">
+      <div class="card-body">
+
+        <h4 class="mb-4">Créer une boutique</h4>
+
+        <form [formGroup]="boutiqueForm" (ngSubmit)="submit()">
+
+            <app-form-input
+            label="Nom"
+            placeholder="Nom de la boutique"
+            [required]="true"
+            [control]="boutiqueForm.controls.nom">
+            </app-form-input>
+
+            <app-form-input
+            label="Description"
+            placeholder="Description de la boutique"
+            [required]="true"
+            [control]="boutiqueForm.controls.description">
+            </app-form-input>
+
+            <app-form-input
+                label="Date de création"
+                placeholder="Date de création de la boutique"
+                [required]="true"
+                [control]="boutiqueForm.controls.dateCreation"
+                type="date">
+            </app-form-input>
+
+            <app-form-select
+                label="Box"
+                placeholder="Sélectionnez une box"
+                [control]="boutiqueForm.controls.boxid"
+                [required]="true"
+                [options]="boxes"
+                [optionLabel]="'nom'"
+                [optionValue]="'_id'">
+
+            </app-form-select>
+            <app-form-select
+                label="Propriétaire"
+                placeholder="Sélectionnez un propriétaire"
+                [control]="boutiqueForm.controls.shopUserId"
+                [required]="true"
+                [options]="shopUsers"
+                [optionLabel]="'email'"
+                [optionValue]="'_id'">
+            </app-form-select>
+         
+          <button class="btn btn-primary">
+            Enregistrer
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

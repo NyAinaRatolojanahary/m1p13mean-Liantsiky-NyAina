@@ -1,5 +1,7 @@
-const Boutique = require('../models/Boutique');
 const mongoose = require('mongoose');
+const Boutique = require('../models/Boutique');
+const Box = require('../models/Box');
+const StatusDisponibilite = require('../models/StatusDisponibilite');
 
 exports.getAllBoutique = async () => {
   return await Boutique.find()
@@ -48,6 +50,7 @@ exports.getBoutiquePerStage = async (idStage) => {
 };
 
 exports.createBoutique = async (data) => {
+  //create the boutique
   const boutique = await Boutique.create({
     nom: data.nom,
     description: data.description,
@@ -55,6 +58,19 @@ exports.createBoutique = async (data) => {
     boxId: data.boxId,
     status: data.status || 0
   });
+  
+    const occupiedStatus = await StatusDisponibilite.findOne({
+      code: 20
+    });
+
+    if (!occupiedStatus) {
+      throw new Error("Status occupé introuvable");
+    }
+
+    await Box.findByIdAndUpdate(
+      data.boxId,
+      { status: occupiedStatus._id }
+    );
 
   return boutique;
 };

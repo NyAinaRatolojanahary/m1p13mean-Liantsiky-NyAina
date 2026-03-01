@@ -27,6 +27,14 @@ export const ADMIN_MENU: SidebarItem[] = [
     ]
   },
   {
+    label: 'Boutique',
+    icon: 'shopping-bag',
+    children: [
+      { label: 'Creer', route: '/admin/boutique/create' },
+      { label: 'Liste', route: '/admin/boutique/list' }
+    ]
+  },
+  {
     label: 'Utilisateur',
     icon: 'users',
     children: [
@@ -34,5 +42,6 @@ export const ADMIN_MENU: SidebarItem[] = [
       { label: 'Liste', route: '/admin/user/list' }
     ]
   },
+  
 
 ];

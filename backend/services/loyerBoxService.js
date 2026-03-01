@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 
 exports.createLoyerBox = async (data) => {
   const loyerBox = await LoyerBox.create({
-    nom: data.nom,
     loyer: data.loyer,
     boxId: data.boxId,
     dateApplication: data.dateApplication || Date.now()
