@@ -20,7 +20,7 @@ export class BoxListComponent implements OnInit{
     { header: 'Nom', field: 'nom' },
     { header: 'Superficie (m2)', field: 'espacem2' },
     { header: 'Loyer (AR)', field: 'loyer' },
-    { header: 'Etage', field: 'nom' },
+    { header: 'Etage', field: 'etageNom' },
   ];
   action = 'Change Loyer';
 
@@ -42,13 +42,18 @@ export class BoxListComponent implements OnInit{
     this.loading = false;
 
     this.boxService
-      .getAllPaginated(this.page, this.limit)
-      .subscribe(res => {
-        this.boxes = res.data;
-        this.totalPages = res.pagination.totalPages;
-        this.page = res.pagination.page;
-        this.loading = false;
-      });
+    .getAllPaginated(this.page, this.limit)
+    .subscribe(res => {
+      // add etageNom property to each box
+      this.boxes = res.data.map((box: any) => ({
+        ...box,
+        etageNom: box.etageId ? box.etageId.nom : ''
+      }));
+
+      this.totalPages = res.pagination.totalPages;
+      this.page = res.pagination.page;
+      this.loading = false;
+    });
   }
 
   goToChangeLoyer(box: any) {
