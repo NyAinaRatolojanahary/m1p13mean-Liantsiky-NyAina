@@ -44,11 +44,22 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": {
+                  "inline": false
+                }
+              },
               "budgets": [],
               "outputHashing": "all",
               "prerender": false,
               "ssr": false,
               "outputMode": "static"
+              
             },
             "development": {
               "optimization": false,
