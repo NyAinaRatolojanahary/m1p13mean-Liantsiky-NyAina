@@ -1,5 +1,6 @@
 const boxService = require('../services/boxService');
 const loyerBoxService = require('../services/loyerBoxService');
+const contratBoxService = require('../services/contratBoxService');
 
 exports.getAllBoxes = async (req, res) => {
   try {
@@ -85,6 +86,32 @@ exports.createStatusDisponibilite = async (req, res) => {
     res.status(201).json({
       success: true,
       data: status
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.createStatusContrat = async (req, res) => {
+  try {
+    const status = await contratBoxService.createStatusContrat(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: status
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.createContratBox = async (req, res) => {
+  try {
+    const contrat = await contratBoxService.createContratBox(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: contrat
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

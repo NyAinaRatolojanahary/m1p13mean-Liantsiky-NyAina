@@ -55,22 +55,22 @@ exports.createBoutique = async (data) => {
     nom: data.nom,
     description: data.description,
     proprietaireId: data.proprietaireId,
-    boxId: data.boxId,
+    boxId: null,
     status: data.status || 0
   });
   
-    const occupiedStatus = await StatusDisponibilite.findOne({
-      code: 20
-    });
+    // const occupiedStatus = await StatusDisponibilite.findOne({
+    //   code: 20
+    // });
 
-    if (!occupiedStatus) {
-      throw new Error("Status occupé introuvable");
-    }
+    // if (!occupiedStatus) {
+    //   throw new Error("Status occupé introuvable");
+    // }
 
-    await Box.findByIdAndUpdate(
-      data.boxId,
-      { status: occupiedStatus._id }
-    );
+    // await Box.findByIdAndUpdate(
+    //   data.boxId,
+    //   { status: occupiedStatus._id }
+    // );
 
   return boutique;
 };

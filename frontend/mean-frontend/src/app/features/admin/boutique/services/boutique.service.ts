@@ -16,4 +16,10 @@ export class BoutiqueService {
   getAllPaginated(page: number, limit: number) {
     return this.http.get<any>( `${this.apiUrl}?page=${page}&limit=${limit}`);
   }
+
+  getAll() {
+    var result = null;
+    result = this.http.get<Boutique[]>( this.apiUrl + '/all');
+    return result;
+  }
 }

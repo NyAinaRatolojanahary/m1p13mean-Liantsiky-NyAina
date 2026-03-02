@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Box } from '../models/box.model';
 import { Observable } from 'rxjs';
+import { ContratBox } from '../models/contratBox.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,9 @@ export class BoxService {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
   
+  createContrat(contratBox : ContratBox) : Observable<ContratBox> {
+    return this.http.post<ContratBox>(this.apiUrl + '/contrat/create', contratBox);
+  }
 }
 
   
