@@ -15,6 +15,7 @@ const boxRouter = require('./routes/boxRoute');
 const shopRouter = require('./routes/boutiqueRoute');
 const productRouter = require('./routes/produitRoute');
 const etageRouter = require('./routes/etageRoute');
+const jetonRouter = require('./routes/jetonRoute')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -48,8 +49,9 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api/product-category', productCategorieRouter);
 app.use('/api/box', boxRouter);
 app.use('/api/shop', shopRouter);
-app.use('/api/product', productRouter)
+app.use('/api/product', productRouter);
 app.use('/api/etage', etageRouter);
+app.use('/api/jeton',jetonRouter);
 
 
 app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {
