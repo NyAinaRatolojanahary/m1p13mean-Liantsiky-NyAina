@@ -1,4 +1,5 @@
 const jetonService = require('../services/jetonService')
+const statusTraitementService = require('../services/statusTraitementService')
 
 exports.createJeton = async (req, res) => {
   try {
@@ -34,3 +35,16 @@ exports.getAllJetonsPaginated = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+exports.createStatusTraitement = async (req,res) => {
+  try {
+    const statusTraitement = await statusTraitementService.createStatusTraitement(req.body);
+    res.status(201).json({
+      success: true,
+      data: statusTraitement
+    });
+    
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
