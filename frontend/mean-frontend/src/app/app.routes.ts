@@ -52,6 +52,13 @@ export const routes: Routes = [
               runGuardsAndResolvers: 'always'
         },
         {
+            path: 'box/contrat/create',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-contrat-form/box-contrat-form.component')
+            .then(m => m.BoxContratFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
             path: 'userShop/create',
             loadComponent: () =>
             import('./features/admin/shopUser/pages/shop-user-form/shop-user-form.component')

@@ -1,7 +1,9 @@
-const Box = require('../models/Box');
-const StatusDisponibilite = require('../models/StatusDisponibilite');
 const mongoose = require('mongoose');
 const LoyerBoxService = require('./loyerBoxService');
+
+const Boutique = require('../models/Boutique');
+const Box = require('../models/Box');
+const StatusDisponibilite = require('../models/StatusDisponibilite');
 
 exports.getAllBoxes = async () => {
   return await Box.find()
@@ -131,4 +133,72 @@ exports.createStatusDisponibilite = async (data) => {
         code: data.code
     });
     return status;
+}
+
+
+exports.createContratBox = async (data) => {
+  const ContratBox = require('../models/ContratBox');
+  try {
+    const contrat = await ContratBox.create({
+      boxId: data.boxId,
+      boutiqueId: data.boutiqueId,
+      dateDebut: data.dateDebut,
+      dateFin: data.dateFin,
+      loyer: data.loyer,
+      datePayement: data.datePayement,
+      statusContrat: data.statusContrat
+    });
+
+  //update status de Box => occupe
+    const occupiedStatus = await StatusDisponibilite.findOne({
+      code: 20
+    });
+
+    if (!occupiedStatus) {
+      throw new Error("Status occupé introuvable");
+    }
+    // const boxUpdate = await Box.findOne({
+    //   _id : data.boxId
+    // });
+    // if(!boxUpdate) {
+    //   throw new Error("Box introuvable  introuvable");
+    // }
+
+    await Box.findByIdAndUpdate(
+      data.boxId,
+      { status: occupiedStatus._id },
+      { new : true }
+    );
+
+  // update Boutique => assigner un box
+  const boutique = await Boutique.findOne({
+      _id : data.boutiqueId
+    });
+
+    if (!boutique) {
+      throw new Error("Boutique introuvable");
+    }
+
+    await Boutique.findByIdAndUpdate(
+      data.boutiqueId,
+      { boxId : data.boxId },
+      { new : true}
+    );
+
+  return contrat;
+  }catch (err){
+    console.error("CONTRAT FLOW ERROR:", err);
+    throw err;
+  }
+}
+
+exports.createStatusContrat = async (data) => {
+  const StatusContrat = require('../models/StatusContrat');
+  const existingStatus = await StatusContrat.findOne({ nom: data.nom });
+  if (existingStatus) throw new Error('Status Contrat déja existant');
+  const status = await StatusContrat.create({
+      nom: data.nom,
+      code: data.code
+  });
+  return status;
 }

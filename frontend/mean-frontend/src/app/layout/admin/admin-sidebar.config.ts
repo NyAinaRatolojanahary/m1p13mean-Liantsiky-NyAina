@@ -2,13 +2,6 @@ import { SidebarItem } from
 '../../shared/components/sidebar/sidebar.model';
 
 export const ADMIN_MENU: SidebarItem[] = [
-
-  {
-    label: 'Dashboard',
-    icon: 'airplay',
-    route: '/admin/dashboard'
-  },
-
   {
     label: 'Etage',
     icon: 'package',
@@ -23,7 +16,8 @@ export const ADMIN_MENU: SidebarItem[] = [
     icon: 'package',
     children: [
       { label: 'Creer', route: '/admin/box/create' },
-      { label: 'Liste', route: '/admin/box/list' }
+      { label: 'Liste', route: '/admin/box/list' },
+      { label: 'Allouer', route: '/admin/box/contrat/create' }
     ]
   },
   {

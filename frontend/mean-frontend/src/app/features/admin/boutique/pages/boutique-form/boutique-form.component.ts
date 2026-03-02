@@ -28,13 +28,12 @@ export class BoutiqueFormComponent implements OnInit {
     private shopUserService : ShopUserService
   ) {}
   //list  for select
-  boxes : any[] = [];
+  // boxes : any[] = [];
   shopUsers : any[] = [];
 
   boutiqueForm = new FormGroup({
     nom : new FormControl(''),
     description : new FormControl(''),
-    boxId : new FormControl(''),
     proprietaireId : new FormControl(''),
     dateCreation : new FormControl(new Date()),
   })
@@ -51,7 +50,6 @@ export class BoutiqueFormComponent implements OnInit {
         nom: formValue.nom || '',
         description: formValue.description || '',
         proprietaireId: formValue.proprietaireId || '',
-        boxId: formValue.boxId || '',
         dateCreation: formValue.dateCreation || new Date()
       };
   
@@ -69,14 +67,14 @@ export class BoutiqueFormComponent implements OnInit {
     }
     
   loadData() {
-    this.boxService.getAll().subscribe({
-      next: (res) => {
-        this.boxes = res;
-      },
-      error: (err) => {
-        console.error('Error loading boxes:', err);
-      }
-    });
+    // this.boxService.getAll().subscribe({
+    //   next: (res) => {
+    //     this.boxes = res;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading boxes:', err);
+    //   }
+    // });
 
     this.shopUserService.getAllShopUsers().subscribe({
       next: (res) => {

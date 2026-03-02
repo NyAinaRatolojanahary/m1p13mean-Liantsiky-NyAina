@@ -3,7 +3,7 @@ const boutiqueService = require('../services/boutiqueService');
 exports.getAllBoutique = async (req, res) => {
   try {
     const data = await boutiqueService.getAllBoutique();
-    res.status(200).json({ success: true, data });
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
