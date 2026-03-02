@@ -13,7 +13,6 @@ db.categorieproduits.deleteMany({})
 db.produits.deleteMany({})
 db.statusdisponibilites.deleteMany({})
 db.loyerboxes.deleteMany({})
-db.contratboxes.deleteMany({})
 
 // =======================================
 // ROLES
@@ -23,7 +22,6 @@ db.roles.insertMany([
   { _id: ObjectId("69941343dc3e77fec38de667"), nom: "Boutique", status: 10 },
   { _id: ObjectId("69941343dc3e77fec38de668"), nom: "Admin", status: 20 }
 ])
-
 // =======================================
 // UTILISATEURS
 // Mot de passe: sababacute
