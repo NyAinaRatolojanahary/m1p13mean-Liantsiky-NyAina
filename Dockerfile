@@ -4,12 +4,12 @@ WORKDIR /app/frontend
 
 # Go into the subfolder where your package.json actually is
 COPY frontend/mean-frontend/package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copy the rest of the frontend code
 COPY frontend/mean-frontend/ .
 ENV NG_BUILD_INLINE_OPTIMIZE=false
-RUN npx ng build --configuration production  --external-dependencies bootstrap-icons
+RUN npx ng build --configuration production  --external-dependencies bootstrap-icons --prerender false --ssr false
 
 # --- Stage 2: Setup Node Server ---
 FROM node:20
