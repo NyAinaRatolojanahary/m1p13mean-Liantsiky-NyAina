@@ -8,7 +8,7 @@ RUN npm install
 
 # Copy the rest of the frontend code
 COPY frontend/mean-frontend/ .
-RUN npx ng build --configuration production --external-dependencies bootstrap-icons
+RUN npx ng build --configuration production --optimization.fonts.inline=false --external-dependencies bootstrap-icons
 
 # --- Stage 2: Setup Node Server ---
 FROM node:20
