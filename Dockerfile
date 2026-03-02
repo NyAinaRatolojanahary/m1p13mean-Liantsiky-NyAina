@@ -8,7 +8,7 @@ RUN npm install
 
 # Copy the rest of the frontend code
 COPY frontend/mean-frontend/ .
-RUN npx ng build --configuration production
+RUN npx ng build --configuration production --inline-critical-css=false
 
 # --- Stage 2: Setup Node Server ---
 FROM node:20
