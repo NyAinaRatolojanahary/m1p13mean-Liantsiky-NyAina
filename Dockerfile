@@ -9,7 +9,7 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the frontend code
 COPY frontend/mean-frontend/ .
 ENV NG_BUILD_INLINE_OPTIMIZE=false
-RUN npx ng build --configuration production  --external-dependencies bootstrap-icons --prerender false --ssr false
+RUN npx ng build --configuration production 
 
 # --- Stage 2: Setup Node Server ---
 FROM node:20
