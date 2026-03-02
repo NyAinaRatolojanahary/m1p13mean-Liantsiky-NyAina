@@ -7,6 +7,6 @@ export interface Boutique {
     description: string;
     proprietaireId: string | ShopUser;
     dateCreation: Date;
-    boxId : string | Box;
+    boxId? : string | Box;
     status?: number;
 }
