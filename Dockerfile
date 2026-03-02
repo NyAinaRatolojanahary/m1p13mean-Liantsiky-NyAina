@@ -9,7 +9,7 @@ RUN npm install
 # Copy the rest of the frontend code
 COPY frontend/mean-frontend/ .
 ENV NG_BUILD_INLINE_OPTIMIZE=false
-RUN npx ng build --configuration production --external-dependencies bootstrap-icons
+RUN npx ng build --configuration production --prerender false --ssr false --external-dependencies bootstrap-icons
 
 # --- Stage 2: Setup Node Server ---
 FROM node:20
