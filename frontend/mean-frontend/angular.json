@@ -42,9 +42,7 @@
             "production": {
               "optimization": true,
               "budgets": [],
-              "outputHashing": "all",
-              "ssr": false,
-              "prerender" : false
+              "outputHashing": "all"
             },
             "development": {
               "optimization": false,
