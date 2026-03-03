@@ -75,14 +75,3 @@ exports.updateProduit = async (req, res) => {
     res.status(404).json({ success: false, message: error.message });
   }
 };
-
-exports.getRandomProduits = async (req, res) => {
-  try {
-    const limit = req.query.limit || 10; 
-    const produits = await produitService.getRandomProduits(limit);
-    res.status(200).json({ success: true, data: produits });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: err.message });
-  }
-};

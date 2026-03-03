@@ -113,14 +113,3 @@ exports.updateProduit = async (id, updates) => {
 
   return result;
 };
-
-exports.getRandomProduits = async (limit = 20) => {
-  limit = Number(limit) || 10;
-  const produits = await Produit.aggregate([
-    { $sample: { size: limit } } // tire des documents aléatoires
-  ]);
-  return await Produit.populate(produits, [
-    { path: 'categorieId' },
-    { path: 'boutiqueId' }
-  ]);
-};
