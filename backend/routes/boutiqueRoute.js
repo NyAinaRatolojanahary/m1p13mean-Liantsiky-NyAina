@@ -6,6 +6,8 @@ const ROLES = require('../constants/roles');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 
 // Public routes (no auth required)
+router.get('/', boutiqueController.getAllBoutiquePaginated);
+router.get('/all', boutiqueController.getAllBoutique);
 router.get('/public', boutiqueController.getAllBoutique);
 router.get('/public/:id', boutiqueController.getBoutiqueByID);
 
@@ -25,7 +27,6 @@ router.get('/public/:id', boutiqueController.getBoutiqueByID);
 
 //without middleware for testing
 router.post('/create', boutiqueController.createBoutique);
-router.get('/', boutiqueController.getAllBoutiquePaginated);
-router.get('/all', boutiqueController.getAllBoutique);
+
 
 module.exports = router;

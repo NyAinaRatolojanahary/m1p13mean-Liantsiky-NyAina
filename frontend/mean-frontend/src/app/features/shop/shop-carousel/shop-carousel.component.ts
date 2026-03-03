@@ -36,7 +36,7 @@ export class ShopCarouselComponent implements OnInit, AfterViewInit {
   }
 
   private initCarousel() {
-    const slider = $('.shops__slider');
+    const slider = $('.init-shop-carousel');
     if (slider.length && !slider.hasClass('owl-loaded')) {
       slider.owlCarousel({
         loop: true,

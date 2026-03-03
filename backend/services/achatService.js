@@ -5,17 +5,12 @@ const mongoose = require('mongoose');
 const portefeuilleService = require('./portefeuilleService');
 
 exports.acheterPanier = async (userId, items) => {
-
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
-
     let prixTotal = 0;
     const produits = [];
 
     for (const item of items) {
-      const produit = await Produit.findById(item.produitId).session(session);
+      const produit = await Produit.findById(item.produitId);
 
       if (!produit) throw new Error('Produit introuvable');
       if (produit.stock < item.quantite)
@@ -33,33 +28,28 @@ exports.acheterPanier = async (userId, items) => {
 
     await portefeuilleService.debiter(userId, prixTotal);
 
-    const achat = await Achat.create([{
+    const achat = await Achat.create({
       clientId: userId,
-      prixTotal
-    }], { session });
+      prixTotal,
+      status: 10
+    });
 
     for (const p of produits) {
-
-      await AchatDetails.create([{
-        achatId: achat[0]._id,
+      await AchatDetails.create({
+        achatId: achat._id,
         produitId: p.produit._id,
-        quantite: p.quantite,
+        nombre: p.quantite,
         prixUnitaire: p.produit.prixActuel,
         total: p.totalProduit
-      }], { session });
+      });
 
       p.produit.stock -= p.quantite;
-      await p.produit.save({ session });
+      await p.produit.save();
     }
 
-    await session.commitTransaction();
-    session.endSession();
-
-    return achat[0];
+    return achat;
 
   } catch (error) {
-    await session.abortTransaction();
-    session.endSession();
     throw error;
   }
 };

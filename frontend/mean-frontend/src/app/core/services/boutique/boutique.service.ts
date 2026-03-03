@@ -8,7 +8,7 @@ export interface Boutique {
     description?: string;
     proprietaireId?: any;
     boxId?: any;
-    status?: number;
+    // status?: number;
     dateCreation?: string;
 }
 
@@ -25,7 +25,7 @@ export class BoutiqueService {
 
     // Uses the public endpoint (to be added in backend)
     getAll(): Observable<ApiResponse<Boutique[]>> {
-        return this.api.get<ApiResponse<Boutique[]>>('/shop/public');
+        return this.api.get<ApiResponse<Boutique[]>>('/shop/all');
     }
 
     getById(id: string): Observable<ApiResponse<Boutique>> {

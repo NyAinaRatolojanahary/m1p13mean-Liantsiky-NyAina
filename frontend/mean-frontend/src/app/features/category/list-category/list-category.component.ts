@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProduitService, Produit } from '../../../core/services/produit/produit.service';
 import { CategorieService, Categorie } from '../../../core/services/categorie/categorie.service';
+import { ProductCardComponent } from '../../products/product-card/product-card.component';
 
 @Component({
   selector: 'app-list-category',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ProductCardComponent],
   templateUrl: './list-category.component.html',
   styleUrl: './list-category.component.css'
 })
