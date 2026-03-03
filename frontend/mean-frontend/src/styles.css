@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'swiper/css/bundle';
+
+
+.ui-icon,
+.ui-widget-content .ui-icon,
+.ui-widget-header .ui-icon,
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon,
+.ui-button .ui-icon {
+    background-image: none !important;
+}

@@ -1,0 +1,68 @@
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of cartService.cartItems$()">
+                                <td class="shoping__cart__item">
+                                    <img [src]="item.image" alt="Product Image"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                    <h5>{{ item.name }}</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                    {{ item.price | number:'1.2-2' }} Ar
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <span class="dec qtybtn"
+                                                (click)="decreaseQuantity(item.id, item.quantity)">-</span>
+                                            <input type="text" [value]="item.quantity"
+                                                (change)="updateQuantity(item.id, $event)">
+                                            <span class="inc qtybtn"
+                                                (click)="increaseQuantity(item.id, item.quantity)">+</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                    {{ (item.price * item.quantity) | number:'1.2-2' }} Ar
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <span class="icon_close" (click)="removeItem(item.id)"></span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="cartService.cartItems$().length === 0">
+                                <td colspan="5" class="text-center py-4">Your cart is empty.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 offset-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Cart Total</h5>
+                    <ul>
+                        <li>Subtotal <span>{{ cartService.cartTotal$() | number:'1.2-2' }} Ar</span></li>
+                        <li>Total <span>{{ cartService.cartTotal$() | number:'1.2-2' }} Ar</span></li>
+                    </ul>
+                    <button (click)="checkout()" class="site-btn login-btn primary-btn">
+                      ACHETER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

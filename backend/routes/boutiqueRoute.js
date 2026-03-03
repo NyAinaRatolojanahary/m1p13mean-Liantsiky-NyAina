@@ -5,6 +5,11 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const ROLES = require('../constants/roles');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 
+// Public routes (no auth required)
+router.get('/public', boutiqueController.getAllBoutique);
+router.get('/public/:id', boutiqueController.getBoutiqueByID);
+
+// Admin-only routes
 router.get('/', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getAllBoutique);
 router.get('/paginated', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getAllBoutiquePaginated);
 router.get('/stage/:idStage', authMiddleware, roleMiddleware(ROLES.ADMIN), boutiqueController.getBoutiquePerStage);

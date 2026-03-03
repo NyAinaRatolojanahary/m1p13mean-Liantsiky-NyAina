@@ -37,6 +37,7 @@ services:
       - backend
     volumes:
       - ./frontend/mean-frontend:/app
+      - ./frontend/mean-frontend/src/assets:/app/src/assets
       - /app/node_modules
     command: npm start
 
