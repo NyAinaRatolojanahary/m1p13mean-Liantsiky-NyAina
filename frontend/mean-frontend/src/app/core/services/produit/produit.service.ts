@@ -5,7 +5,7 @@ import { ApiService } from '../api/api.service';
 export interface Produit {
     _id: string;
     nom: string;
-    prix: number;
+    prixActuel: number;
     remise: number;
     details?: string;
     images: string;
@@ -44,6 +44,6 @@ export class ProduitService {
     }
 
     getRandom(): Observable<ApiResponse<Produit[]>> {
-      return this.api.get<ApiResponse<Produit[]>>('/product/random');
+        return this.api.get<ApiResponse<Produit[]>>('/product/random');
     }
 }

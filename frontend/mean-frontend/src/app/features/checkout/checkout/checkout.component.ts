@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   calculateTotals() {
-    this.subtotal = this.cartItems.reduce((acc: number, item: CartItem) => acc + (item.price * item.quantity), 0);
+    this.subtotal = this.cartItems.reduce((acc: number, item: CartItem) => acc + (item.prixActuel * item.quantity), 0);
     this.total = this.subtotal + this.deliveryCost;
   }
 

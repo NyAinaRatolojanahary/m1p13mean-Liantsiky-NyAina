@@ -21,7 +21,7 @@
                                     <h5>{{ item.name }}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
-                                    {{ item.price | number:'1.2-2' }} Ar
+                                    {{ item.prixActuel | number:'1.2-2' }} Ar
                                 </td>
                                 <td class="shoping__cart__quantity">
                                     <div class="quantity">
@@ -36,7 +36,7 @@
                                     </div>
                                 </td>
                                 <td class="shoping__cart__total">
-                                    {{ (item.price * item.quantity) | number:'1.2-2' }} Ar
+                                    {{ (item.prixActuel * item.quantity) | number:'1.2-2' }} Ar
                                 </td>
                                 <td class="shoping__cart__item__close">
                                     <span class="icon_close" (click)="removeItem(item.id)"></span>
@@ -59,7 +59,7 @@
                         <li>Total <span>{{ cartService.cartTotal$() | number:'1.2-2' }} Ar</span></li>
                     </ul>
                     <button (click)="checkout()" class="site-btn login-btn primary-btn">
-                      ACHETER
+                        ACHETER
                     </button>
                 </div>
             </div>

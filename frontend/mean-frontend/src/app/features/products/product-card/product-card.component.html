@@ -1,25 +1,19 @@
-<div class="col-lg-3">
-  <div class="product__discount__item">
-      <div class="product__discount__item__pic set-bg"
-          [ngStyle]="{'background-image': 'url(' + image + ')'}" alt="Product Image">
-          <div class="product__discount__percent">
-              -{{ discount }}%
-          </div>
-
-          <ul class="product__item__pic__hover">
-              <li>
-                  <a [routerLink]="['/details', id]">
-                      <i class="fa fa-shopping-cart"></i>
-                  </a>
-              </li>
-          </ul>
-      </div>
-      <div class="product__discount__item__text">
-          <span>{{ category }}</span>
-          <h5><a [routerLink]="['/details', id]">{{ name }}</a></h5>
-          <div class="product__item__price">
-              {{ price }} Ar
-          </div>
-      </div>
-  </div>
+<div class="featured__item">
+    <div class="featured__item__pic set-bg"
+        [style.background-image]="'url(' + (image || 'assets/img/featured/featured-1.jpg') + ')'">
+        <ul class="featured__item__pic__hover">
+            <li><a [routerLink]="['/details', id]"><i class="fa fa-eye"></i></a></li>
+        </ul>
+    </div>
+    <div class="featured__item__text">
+        <span>{{ category }}</span>
+        <h6><a [routerLink]="['/details', id]">{{ name }}</a></h6>
+        <h5>
+            {{ prixActuel | number:'1.0-0' }} Ar
+            <span *ngIf="discount > 0" class="text-muted"
+                style="text-decoration: line-through; font-size: 14px; margin-left: 10px;">
+                {{ oldPrice | number:'1.0-0' }} Ar
+            </span>
+        </h5>
+    </div>
 </div>
