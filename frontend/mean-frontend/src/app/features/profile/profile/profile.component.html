@@ -1,0 +1,63 @@
+<div class="profile-container">
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading">
+    <i class="fa fa-spinner fa-spin"></i>
+    Chargement du profil...
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="error-msg">
+    <i class="fa fa-exclamation-circle"></i>
+    {{ errorMessage }}
+  </div>
+
+  <!-- Profile -->
+  <div *ngIf="user && !isLoading" class="profile-card">
+
+    <div class="profile-header">
+      <i class="fa fa-user-circle fa-4x avatar"></i>
+      <h2>{{ user.prenom }} {{ user.nom }}</h2>
+      <p class="email">{{ user.email }}</p>
+    </div>
+
+    <div class="profile-body">
+
+      <div class="profile-info">
+        <label>Prénom</label>
+        <span>{{ user.prenom }}</span>
+      </div>
+
+      <div class="profile-info">
+        <label>Nom</label>
+        <span>{{ user.nom }}</span>
+      </div>
+
+      <div class="profile-info">
+        <label>Email</label>
+        <span>{{ user.email }}</span>
+      </div>
+
+      <div class="profile-info">
+        <label>Adresse</label>
+        <span>{{ user.address || 'Non renseignée' }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="profile-wallet">
+    <h3>Mon Portefeuille</h3>
+
+    <div class="solde-box">
+      Solde actuel :
+      <!-- <strong>{{ wallet?.solde_actuel }} Jetons</strong> -->
+    </div>
+
+    <button routerLink="/buy-jeton" class="btn btn-primary">
+      Acheter des jetons
+    </button>
+  </div>
+
+</div>

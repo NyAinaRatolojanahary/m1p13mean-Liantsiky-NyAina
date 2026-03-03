@@ -1,0 +1,13 @@
+.categories__slider {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #7fad39; /* couleur Ogani */
+}
+
+.swiper-pagination-bullet-active {
+  background: #7fad39;
+}

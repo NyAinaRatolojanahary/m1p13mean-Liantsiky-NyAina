@@ -1,0 +1,45 @@
+.profile-container {
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.profile-card {
+  background: rgb(235, 255, 239);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 24px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-header .email {
+  color: #666;
+  font-size: 14px;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-info label {
+  font-weight: 600;
+  color: #444;
+}
+
+.loading,
+.error-msg {
+  text-align: center;
+  margin-top: 20px;
+}
