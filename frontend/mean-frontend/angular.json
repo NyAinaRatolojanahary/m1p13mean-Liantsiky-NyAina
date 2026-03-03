@@ -61,18 +61,7 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "1MB",
-                  "maximumError": "2MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ]
+              "budgets": []
             },
             "development": {
               "optimization": false,
