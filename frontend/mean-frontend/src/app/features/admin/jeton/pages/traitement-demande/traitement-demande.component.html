@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <div class="card">
+  <div class="card-header">
+    <h5>Liste des demandes de Jetons</h5>
+  </div>
+
+  <app-table-one
+    [columns]="columns"
+    [data]="demandes"
+    [loading]="loading"
+    [page]="page"
+    [totalPages]="totalPages"
+    [action] = "action"
+    (pageChange)="onPageChange($event)"
+    (actionClick)="goToChangeLoyer($event)">
+    
+  </app-table-one>
+
+</div>
+</div>

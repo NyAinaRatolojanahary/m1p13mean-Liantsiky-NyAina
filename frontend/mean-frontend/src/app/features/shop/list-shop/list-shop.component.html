@@ -9,7 +9,7 @@
         </div>
 
         <!-- List of all boutiques when on /shops (no shopId) -->
-        <div class="row" *ngIf="!isLoading && boutiques?.length > 0">
+        <div class="row" *ngIf="!isLoading && boutiques.length > 0">
             <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let boutique of boutiques">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg"
@@ -27,7 +27,7 @@
         </div>
 
         <!-- List of products when on /shops/:id -->
-        <div class="row featured__filter" *ngIf="!isLoading && products?.length > 0; else noProducts">
+        <div class="row featured__filter" *ngIf="!isLoading && products.length > 0; else noProducts">
             <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of products">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg"

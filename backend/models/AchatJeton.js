@@ -6,7 +6,7 @@ const AchatJetonSchema = new mongoose.Schema({
     referenceVirement : { type : String, required : true },
     dateDemande : { type : Date, default : Date.now() },
     dateTraiter : { type : Date, default : null },
-    note : String,
+    note : { type : String, default : ' '},
     status : { type: mongoose.Schema.Types.ObjectId, ref: 'StatusTraitement' },
     jetons : [
         {

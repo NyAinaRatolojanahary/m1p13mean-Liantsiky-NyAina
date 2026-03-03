@@ -1,6 +1,6 @@
 import { Component, Input, AfterViewChecked, Inject, PLATFORM_ID, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule ,isPlatformBrowser} from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SidebarItem } from './sidebar.model';
 
 @Component({
@@ -13,13 +13,17 @@ export class SidebarComponent implements AfterViewChecked{
   @Input() menu: SidebarItem[] = [];
   logoUrl: string = 'assets/template/images/logo-full.png';
 
+  username : string = '';
   private featherLoaded = false;
   
   
   // Reference to all arrow containers
   @ViewChildren('arrowContainer', { read: ElementRef }) arrowContainers!: QueryList<ElementRef>;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router : Router
+  ) {}
 
   toggle(item: SidebarItem) {
   item.expanded = !item.expanded;
@@ -35,5 +39,13 @@ export class SidebarComponent implements AfterViewChecked{
     }
   }
 
+  ngOnInit(): void {
+    this.username = localStorage.getItem('username') || 'Admin';
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigate(['/login']);
+  }
   
 }
