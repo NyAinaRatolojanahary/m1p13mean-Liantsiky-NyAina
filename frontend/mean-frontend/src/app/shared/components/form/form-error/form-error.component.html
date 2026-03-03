@@ -1,0 +1,15 @@
+<div *ngIf="control.touched && control.invalid">
+
+  <small *ngIf="control.errors?.['required']">
+    This field is required
+  </small>
+
+  <small *ngIf="control.errors?.['email']">
+    Invalid email address
+  </small>
+
+  <small *ngIf="control.errors?.['minlength']">
+    Too short
+  </small>
+
+</div>

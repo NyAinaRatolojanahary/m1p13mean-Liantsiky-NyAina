@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ClientLayoutComponent } from './core/layout/client/client-layout/client-layout.component';
 import { authGuard } from './core/guards/auth/auth.guard';
+import { AdminLayoutComponent } from './layout/admin/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   {
@@ -70,6 +71,26 @@ export const routes: Routes = [
           import('./features/tokens/buy-tokens/buy-tokens.component')
             .then(m => m.BuyTokensComponent)
       }
+    ]
+  },
+  {
+        path: 'admin',
+        component: AdminLayoutComponent,
+        children: [
+
+        {
+            path: 'dashboard',
+            loadComponent: () =>
+            import('./features/admin/dashboard/dashboard.component')
+            .then(m => m.DashboardComponent)
+        },
+        {
+            path: 'etage/create',
+            loadComponent: () =>
+            import('./features/admin/etage/pages/etage-form/etage-form.component')
+            .then(m => m.EtageFormComponent)
+        }
+
     ]
   }
 ];

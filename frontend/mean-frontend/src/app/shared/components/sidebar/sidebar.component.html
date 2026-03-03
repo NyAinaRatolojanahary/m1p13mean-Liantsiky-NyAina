@@ -1,0 +1,48 @@
+<nav class="nxl-navigation">
+  <div class="navbar-wrapper">
+
+    <!-- Logo -->
+    <div class="m-header">
+      <a routerLink="/admin">
+        <img [src]="logoUrl" class="logo logo-lg" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Menu -->
+    <div class="navbar-content">
+      <ul class="nxl-navbar">
+        <li *ngFor="let item of menu" class="nxl-item" [class.nxl-hasmenu]="item.children" [class.active]="item.expanded">
+
+          <!-- Parent link -->
+          <a class="nxl-link"
+             (click)="item.children ? toggle(item) : null"
+             [routerLink]="!item.children ? item.route : null">
+
+            <!-- Parent icon -->
+            <span class="nxl-micon">
+              <i [attr.data-feather]="item.icon"></i>
+            </span>
+
+            <span class="nxl-mtext">{{ item.label }}</span>
+
+            <!-- Arrow for children -->
+            <span *ngIf="item.children" class="nxl-arrow">
+              <i data-feather="chevron-down"></i>
+            </span>
+          </a>
+
+          <!-- Submenu -->
+          <ul class="nxl-submenu" *ngIf="item.children && item.expanded">
+            <li *ngFor="let child of item.children" class="nxl-item">
+              <a class="nxl-link" [routerLink]="child.route">
+                {{ child.label }}
+              </a>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

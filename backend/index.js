@@ -15,6 +15,7 @@ const stageRouter = require('./routes/etageRoute');
 const boxRouter = require('./routes/boxRoute');
 const shopRouter = require('./routes/boutiqueRoute');
 const productRouter = require('./routes/produitRoute');
+const etageRouter = require('./routes/etageRoute');
 const buyRouter = require('./routes/achatRoute');
 const walletRouter = require('./routes/');
 
@@ -42,7 +43,7 @@ app.use('/box', boxRouter);
 app.use('/shop', shopRouter);
 app.use('/product', productRouter);
 app.use('/buy', buyRouter);
-app.use('/wallet', );
+app.use('/wallet', walletRouter);
 
 
 app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {
