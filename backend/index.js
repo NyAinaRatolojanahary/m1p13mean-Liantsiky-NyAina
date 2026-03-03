@@ -18,6 +18,9 @@ const etageRouter = require('./routes/etageRoute');
 const jetonRouter = require('./routes/jetonRoute');
 const modePaiementRouter = require('./routes/modePaiementRoute');
 
+//deploiement
+const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const frontEndOrigin = [
@@ -40,13 +43,13 @@ app.use(cors(corpsOptions));
 app.use(express.json());
 
 // Routes
-app.get('/', (req, resp) => {
-    resp.send("Hello World");
-});
+// app.get('/', (req, resp) => {
+//     resp.send("Hello World");
+// });
 
-app.get('/test', (req, resp) => {
-    resp.send("Hello World test");
-});
+// app.get('/test', (req, resp) => {
+//     resp.send("Hello World test");
+// });
 
 
 
@@ -67,10 +70,18 @@ app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => 
     resp.send("Bonjour sur le test : " + req.params.nbr);
 });
 
-// 404
-app.use((req, resp) => {
-    resp.status(404).send("Page Not Found");
+// Serve Angular static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Angular routing fallback (SPA support)
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+// 404
+// app.use((req, resp) => {
+//     resp.status(404).send("Page Not Found");
+// });
 
 // Start server
 app.listen(PORT,'0.0.0.0', () => 
