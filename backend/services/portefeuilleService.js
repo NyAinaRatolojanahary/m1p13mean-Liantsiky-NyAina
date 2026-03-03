@@ -7,6 +7,10 @@ exports.getSolde = async (userId) => {
 
 exports.crediter = async (userId, montant) => {
   const portefeuille = await Portefeuille.findOne({ userId });
+  if (!portefeuille) {
+    // Create wallet if doesn't exist? (Usually created at registration)
+    throw new Error('Portefeuille introuvable');
+  }
 
   portefeuille.solde_actuel += montant;
   await portefeuille.save();
@@ -23,7 +27,7 @@ exports.crediter = async (userId, montant) => {
 exports.debiter = async (userId, montant) => {
   const portefeuille = await Portefeuille.findOne({ userId });
 
-  if (portefeuille.solde_actuel < montant) {
+  if (!portefeuille || portefeuille.solde_actuel < montant) {
     throw new Error('Solde insuffisant');
   }
 
@@ -37,4 +41,10 @@ exports.debiter = async (userId, montant) => {
   });
 
   return portefeuille;
+};
+
+exports.getHistorique = async (userId) => {
+  const portefeuille = await Portefeuille.findOne({ userId });
+  if (!portefeuille) return [];
+  return await Virement.find({ portefeuilleId: portefeuille._id }).sort({ dateVirement: -1 });
 };

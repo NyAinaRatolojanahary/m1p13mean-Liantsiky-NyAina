@@ -26,16 +26,21 @@ export class AchatService {
     : Observable<ApiResponse<Achat>> {
 
     return this.api.post<ApiResponse<Achat>>(
-      '/achats/acheter',
-      { items }
+      '/buy/acheter',
+      { items },
+      true
     );
   }
 
   getAll(): Observable<ApiResponse<Achat[]>> {
-    return this.api.get<ApiResponse<Achat[]>>('/achats');
+    return this.api.get<ApiResponse<Achat[]>>('/buy/history', true);
+  }
+
+  getDetails(id: string): Observable<ApiResponse<any[]>> {
+    return this.api.get<ApiResponse<any[]>>(`/buy/details/${id}`, true);
   }
 
   getById(id: string): Observable<ApiResponse<Achat>> {
-    return this.api.get<ApiResponse<Achat>>(`/achats/${id}`);
+    return this.api.get<ApiResponse<Achat>>(`/buy/${id}`, true);
   }
 }

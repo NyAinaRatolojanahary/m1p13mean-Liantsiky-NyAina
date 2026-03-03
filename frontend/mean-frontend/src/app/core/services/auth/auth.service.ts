@@ -8,7 +8,9 @@ export interface User {
   prenom: string;
   nom?: string;
   email?: string;
-  address?: string
+  address?: string;
+  adresse?: string;
+  telephone?: string;
 }
 
 interface LoginResponse {
