@@ -44,6 +44,12 @@ app.get('/', (req, resp) => {
     resp.send("Hello World");
 });
 
+app.get('/test', (req, resp) => {
+    resp.send("Hello World test");
+});
+
+
+
 app.use('/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/uploads', express.static('uploads'));
