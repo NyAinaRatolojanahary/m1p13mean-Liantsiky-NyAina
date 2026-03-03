@@ -4,7 +4,7 @@ import { ApiService } from '../api/api.service';
 
 export interface ModePaiement {
     _id: string;
-    designation: string;
+    nom: string;
 }
 
 @Injectable({
@@ -14,6 +14,6 @@ export class ModePaiementService {
     private api = inject(ApiService);
 
     getAll(): Observable<ModePaiement[]> {
-        return this.api.get<ModePaiement[]>('/modePaiement');
+        return this.api.get<ModePaiement[]>('/modePaiement/all');
     }
 }

@@ -62,6 +62,10 @@ export class AuthService {
     );
   }
 
+  register(userData: any): Observable<any> {
+    return this.api.post<any>('/auth/register', userData);
+  }
+
   logout() {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('auth_token');

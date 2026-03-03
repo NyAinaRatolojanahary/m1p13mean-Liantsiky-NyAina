@@ -25,7 +25,7 @@
                         <ul *ngIf="cartItems.length > 0; else emptyCart">
                             <li *ngFor="let item of cartItems">
                                 {{ item.name }} (x{{ item.quantity }})
-                                <span>${{ (item.price * item.quantity) | number:'1.2-2' }}</span>
+                                <span>Ar {{ (item.prixActuel * item.quantity) | number:'1.2-2' }}</span>
                             </li>
                         </ul>
                         <ng-template #emptyCart>

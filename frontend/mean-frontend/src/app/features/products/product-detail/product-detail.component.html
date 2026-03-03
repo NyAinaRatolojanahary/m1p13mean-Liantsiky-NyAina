@@ -5,25 +5,34 @@
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
                         <img class="product__details__pic__item--large"
-                            [src]="product.images || 'img/product/details/product-details-1.jpg'" alt="Image de Produits">
+                            [src]="product.images || 'img/product/details/product-details-1.jpg'"
+                            alt="Image de Produits">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
                     <h3>{{ product.nom }}</h3>
-                    <div class="product__details__price">{{ product.prix | number:'1.2-2' }} Ar</div>
+                    <div class="product__details__price">{{ product.prixActuel | number:'1.2-2' }} Ar</div>
                     <p>{{ product.details }}</p>
-                    <div class="product__details__quantity">
+                    <div class="product__details__quantity" *ngIf="product.stock && product.stock > 0">
                         <div class="quantity">
                             <div class="pro-qty">
-                                <input type="number" [(ngModel)]="quantity" min="1">
+                                <input type="number" [(ngModel)]="quantity" min="1" [max]="product.stock">
                             </div>
                         </div>
                     </div>
-                    <button (click)="addToCart()" class="primary-btn border-0">ADD TO CARD</button>
+                    <button (click)="addToCart()" class="primary-btn border-0"
+                        [disabled]="!product.stock || product.stock <= 0">
+                        {{ (product.stock && product.stock > 0) ? 'ADD TO CART' : 'OUT OF STOCK' }}
+                    </button>
                     <ul>
-                        <li><b>Availability</b> <span>In Stock</span></li>
+                        <li><b>Availability</b>
+                            <span [ngClass]="{'text-danger': !product.stock || product.stock <= 0}">
+                                {{ (product.stock && product.stock > 0) ? 'In Stock (' + product.stock + ')' : 'Out of
+                                Stock' }}
+                            </span>
+                        </li>
                         <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
                     </ul>
                 </div>

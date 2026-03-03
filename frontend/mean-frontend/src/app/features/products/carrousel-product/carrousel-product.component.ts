@@ -1,4 +1,4 @@
-import {Component,CUSTOM_ELEMENTS_SCHEMA,Input,OnInit,AfterViewInit,Inject,PLATFORM_ID,inject} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit, AfterViewInit, Inject, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProduitService, Produit } from '../../../core/services/produit/produit.service';
@@ -22,7 +22,7 @@ export class CarrouselProductComponent implements OnInit, AfterViewInit {
 
   products: Produit[] = [];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -54,7 +54,7 @@ export class CarrouselProductComponent implements OnInit, AfterViewInit {
   }
 
   private initCarousel() {
-    const slider = $('.products__slider');
+    const slider = $('.init-product-carousel');
 
     if (slider.length && !slider.hasClass('owl-loaded')) {
       slider.owlCarousel({

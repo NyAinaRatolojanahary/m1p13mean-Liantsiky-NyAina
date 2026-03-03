@@ -15,7 +15,7 @@ import { ApiService } from '../../../core/services/api/api.service';
         <i class="fa fa-coins"></i>
         <div class="solde-info">
           <span class="label">Solde actuel</span>
-          <span class="amount">{{ solde }} Jetons</span>
+          <span class="amount">{{ solde }} Ar</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ import { ApiService } from '../../../core/services/api/api.service';
             <tr *ngFor="let item of history">
               <td>{{ item.dateDemande | date:'short' }}</td>
               <td>{{ item.referenceVirement }}</td>
-              <td>{{ item.montantTotal }} €</td>
+              <td>{{ item.montantTotal }} Ar</td>
               <td>
                 <span class="status-badge" [ngClass]="item.status?.code === 20 ? 'status-done' : 'status-pending'">
                   {{ item.status?.nom }}
