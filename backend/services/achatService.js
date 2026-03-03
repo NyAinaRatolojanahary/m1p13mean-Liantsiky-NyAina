@@ -1,6 +1,7 @@
 const Achat = require('../models/Achat');
 const AchatDetails = require('../models/AchatDetails');
 const Produit = require('../models/Produit');
+const mongoose = require('mongoose');
 const portefeuilleService = require('./portefeuilleService');
 
 exports.acheterPanier = async (userId, items) => {
@@ -69,4 +70,15 @@ exports.getAll = async () => {
 
 exports.getById = async (id) => {
   return await Achat.findById(id).populate('clientId');
+};
+
+exports.getUserHistory = async (userId) => {
+  return await Achat.find({ clientId: userId })
+    .sort({ dateAchat: -1 });
+};
+
+exports.getAchatDetails = async (achatId) => {
+  return await AchatDetails.find({ achatId })
+    .populate('produitId')
+    .populate('boutiqueId');
 };

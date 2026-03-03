@@ -1,63 +1,74 @@
-<div class="profile-container">
+<div class="profile-layout">
+  
+  <aside class="sidebar">
+    <div class="user-brief" *ngIf="user">
+      <i class="fa fa-user-circle fa-3x"></i>
+      <div class="user-meta">
+        <strong>{{ user.prenom }}</strong>
+        <span>Compte Client</span>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a (click)="setTab('profile')" [class.active]="activeTab === 'profile'">
+        <i class="fa fa-id-card"></i> Mon Profil
+      </a>
+      <a (click)="setTab('wallet')" [class.active]="activeTab === 'wallet'">
+        <i class="fa fa-wallet"></i> Mes Jetons
+      </a>
+      <a (click)="setTab('history')" [class.active]="activeTab === 'history'">
+        <i class="fa fa-shopping-bag"></i> Mes Achats
+      </a>
+    </nav>
+  </aside>
 
-  <!-- Loading -->
-  <div *ngIf="isLoading" class="loading">
-    <i class="fa fa-spinner fa-spin"></i>
-    Chargement du profil...
-  </div>
-
-  <!-- Error -->
-  <div *ngIf="errorMessage" class="error-msg">
-    <i class="fa fa-exclamation-circle"></i>
-    {{ errorMessage }}
-  </div>
-
-  <!-- Profile -->
-  <div *ngIf="user && !isLoading" class="profile-card">
-
-    <div class="profile-header">
-      <i class="fa fa-user-circle fa-4x avatar"></i>
-      <h2>{{ user.prenom }} {{ user.nom }}</h2>
-      <p class="email">{{ user.email }}</p>
+  <main class="content">
+    
+    <!-- Profile Info Tab -->
+    <div *ngIf="activeTab === 'profile'" class="tab-pane">
+      <h2>Informations personnelles</h2>
+      <div *ngIf="user" class="profile-details">
+        <div class="detail-item">
+          <label>Nom complet</label>
+          <p>{{ user.prenom }} {{ user.nom }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Email</label>
+          <p>{{ user.email }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Téléphone</label>
+          <p>{{ user.telephone || 'Non renseigné' }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Adresse</label>
+          <p>{{ user.adresse || 'Non renseignée' }}</p>
+        </div>
+      </div>
     </div>
 
-    <div class="profile-body">
-
-      <div class="profile-info">
-        <label>Prénom</label>
-        <span>{{ user.prenom }}</span>
+    <!-- Wallet Tab -->
+    <div *ngIf="activeTab === 'wallet'" class="tab-pane">
+      <app-profile-wallet></app-profile-wallet>
+      <div class="actions">
+        <button routerLink="/buy-tokens" class="btn btn-primary">
+          <i class="fa fa-cart-plus"></i> Acheter des jetons
+        </button>
       </div>
-
-      <div class="profile-info">
-        <label>Nom</label>
-        <span>{{ user.nom }}</span>
-      </div>
-
-      <div class="profile-info">
-        <label>Email</label>
-        <span>{{ user.email }}</span>
-      </div>
-
-      <div class="profile-info">
-        <label>Adresse</label>
-        <span>{{ user.address || 'Non renseignée' }}</span>
-      </div>
-
     </div>
 
-  </div>
-
-  <div class="profile-wallet">
-    <h3>Mon Portefeuille</h3>
-
-    <div class="solde-box">
-      Solde actuel :
-      <!-- <strong>{{ wallet?.solde_actuel }} Jetons</strong> -->
+    <!-- Order History Tab -->
+    <div *ngIf="activeTab === 'history'" class="tab-pane">
+      <app-profile-order-history></app-profile-order-history>
     </div>
 
-    <button routerLink="/buy-jeton" class="btn btn-primary">
-      Acheter des jetons
-    </button>
-  </div>
+    <div *ngIf="isLoading" class="loading">
+      <i class="fa fa-spinner fa-spin"></i> Chargement...
+    </div>
 
+    <div *ngIf="errorMessage" class="error-msg">
+      <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+
+  </main>
 </div>

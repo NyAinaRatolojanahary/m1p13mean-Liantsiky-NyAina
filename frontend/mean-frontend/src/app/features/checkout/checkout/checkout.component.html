@@ -32,19 +32,32 @@
                             <p>Aucun produit séléctionné.</p>
                         </ng-template>
 
-                        <div class="checkout__order__subtotal">Sous-total <span>${{ subtotal | number:'1.2-2' }}</span>
+                        <div class="checkout__order__subtotal">Sous-total <span>{{ subtotal }} Jetons</span>
                         </div>
                         <div class="checkout__order__subtotal"
                             style="border-bottom: 1px solid #e1e1e1; padding-bottom: 15px; margin-bottom: 15px;">
-                            Frais de livraison <span>${{ deliveryCost | number:'1.2-2' }}</span>
+                            Frais de livraison <span>{{ deliveryCost }} Jetons</span>
                         </div>
-                        <div class="checkout__order__total">Total <span>${{ total | number:'1.2-2' }}</span></div>
+                        <div class="checkout__order__total">Total <span>{{ total }} Jetons</span></div>
+
+                        <div class="wallet-status mt-3" *ngIf="!isLoadingWallet">
+                            <hr>
+                            <p [class.text-danger]="total > walletSolde">
+                                <strong>Votre solde : {{ walletSolde }} Jetons</strong>
+                                <span *ngIf="total > walletSolde" class="d-block small">Solde insuffisant pour cet
+                                    achat!</span>
+                            </p>
+                        </div>
 
                         <div class="d-flex justify-content-between mt-4">
-                            <button type="button" class="site-btn bg-danger" (click)="annulerAchat()">Annuler
+                            <button type="button" class="site-btn bg-danger" (click)="annulerAchat()"
+                                [disabled]="isProcessing">Annuler
                                 l'achat</button>
                             <button type="submit" class="site-btn" (click)="validerAchat()"
-                                [disabled]="cartItems.length === 0">Valider l'achat</button>
+                                [disabled]="cartItems.length === 0 || total > walletSolde || isProcessing">
+                                <span *ngIf="!isProcessing">Valider l'achat</span>
+                                <span *ngIf="isProcessing">En cours...</span>
+                            </button>
                         </div>
                     </div>
                 </div>

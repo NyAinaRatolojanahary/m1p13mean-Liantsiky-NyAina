@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const auth = require('../middlewares/auth');
-const portefeuilleController = require('../controllers/p');
+const auth = require('../middlewares/authMiddleware');
+const portefeuilleController = require('../controllers/portefeuilleController');
 
-router.get('/wallet', auth, portefeuilleController.getSolde);
-router.post('/buy-product', auth, achatController.acheterProduit);
+router.get('/history', auth, portefeuilleController.getHistorique);
+router.get('/', auth, portefeuilleController.getSolde);
 
 module.exports = router;

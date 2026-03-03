@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../../../core/services/cart/cart.service';
+import { AchatService } from '../../../core/services/achat/achat.service';
+import { ApiService } from '../../../core/services/api/api.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,26 +16,42 @@ import { CartService, CartItem } from '../../../core/services/cart/cart.service'
 export class CheckoutComponent implements OnInit {
   cartService = inject(CartService) as CartService;
   private router = inject(Router);
+  private achatService = inject(AchatService);
+  private api = inject(ApiService);
 
   cartItems: CartItem[] = [];
   subtotal = 0;
   total = 0;
+  walletSolde = 0;
+  isLoadingWallet = true;
+  isProcessing = false;
 
   deliveryOptions = [
-    { id: 'standard', name: 'Standard Delivery (3-5 days)', cost: 5.00 },
-    { id: 'express', name: 'Express Delivery (1-2 days)', cost: 15.00 },
-    { id: 'pickup', name: 'Store Pickup', cost: 0.00 }
+    { id: 'standard', name: 'Livraison Standard (3-5 jours)', cost: 0 },
+    { id: 'express', name: 'Livraison Express (1-2 jours)', cost: 0 },
+    { id: 'pickup', name: 'Retrait en boutique', cost: 0 }
   ];
-  selectedDeliveryId = 'standard';
-  deliveryCost = 5.00;
+  selectedDeliveryId = 'pickup';
+  deliveryCost = 0;
 
   ngOnInit() {
     this.cartItems = this.cartService.getCart();
     this.calculateTotals();
+    this.loadWallet();
+  }
+
+  loadWallet() {
+    this.api.get<any>('/wallet', true).subscribe({
+      next: (res) => {
+        this.walletSolde = res.data?.solde_actuel || 0;
+        this.isLoadingWallet = false;
+      },
+      error: () => this.isLoadingWallet = false
+    });
   }
 
   onDeliveryChange() {
-    const selected = this.deliveryOptions.find((o: { id: string, name: string, cost: number }) => o.id === this.selectedDeliveryId);
+    const selected = this.deliveryOptions.find(o => o.id === this.selectedDeliveryId);
     if (selected) {
       this.deliveryCost = selected.cost;
       this.calculateTotals();
@@ -46,20 +64,33 @@ export class CheckoutComponent implements OnInit {
   }
 
   validerAchat() {
-    // In a real application, we would process payment and backend order creation here.
-    // For this mock, we assume all items are purchased and we clear the cart.
-    // If the requirement was to only purchase 'checked' items, we'd filter them out
-    // and keep the unpurchased ones.
+    if (this.total > this.walletSolde) {
+      alert('Solde insuffisant ! Veuillez recharger vos jetons.');
+      return;
+    }
 
-    // Simulating clearing the purchased items
-    this.cartItems.forEach((item: CartItem) => this.cartService.removeFromCart(item.id));
+    this.isProcessing = true;
+    const items = this.cartItems.map(item => ({
+      produitId: item.id,
+      quantite: item.quantity
+    }));
 
-    alert('Achat validé avec succès !');
-    this.router.navigate(['/cart']);
+    this.achatService.acheter(items).subscribe({
+      next: () => {
+        // Clear cart after successful backend purchase
+        this.cartItems.forEach((item: CartItem) => this.cartService.removeFromCart(item.id));
+        alert('Achat validé avec succès !');
+        this.router.navigate(['/profile']);
+        this.isProcessing = false;
+      },
+      error: (err) => {
+        alert(err.error?.message || 'Une erreur est survenue lors de l\'achat.');
+        this.isProcessing = false;
+      }
+    });
   }
 
   annulerAchat() {
-    // Navigate back to cart without making changes
     this.router.navigate(['/cart']);
   }
 }
