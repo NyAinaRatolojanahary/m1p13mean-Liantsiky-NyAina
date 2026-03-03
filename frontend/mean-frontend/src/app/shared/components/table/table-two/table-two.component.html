@@ -1,0 +1,39 @@
+<div class="card-body custom-card-action p-0">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+
+            <!-- Header -->
+            <thead>
+                <tr class="border-b">
+                    <th *ngFor="let col of columns" scope="row">{{ col.header }}</th>
+                </tr>
+                
+            </thead>
+
+            <!-- Body -->
+            <tbody>
+                <!-- loading -->
+                 <tr *ngIf="loading">
+                    <td [attr.colspan]="columns.length + 1" class="text-center">
+                    Loading...
+                    </td>
+                </tr>
+                <!-- no data -->
+                <tr *ngIf="!loading && data.length === 0">
+                    <td [attr.colspan]="columns.length + 1" class="text-center">
+                        No data found
+                    </td>
+                </tr>
+                <!-- rows -->
+
+                <tr *ngFor="let row of data" class="border-b">
+                    <td *ngFor="let col of columns">
+                    {{ row[col.field] }}
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+</div>

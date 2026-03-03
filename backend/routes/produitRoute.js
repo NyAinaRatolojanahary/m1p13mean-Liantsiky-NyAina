@@ -6,13 +6,16 @@ const ROLES = require('../constants/roles');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 
 router.get('/', produitController.getAllProduits);
-router.get('/paginated', produitController.getAllProduitsPaginated);
+router.get('/paginated/', produitController.getAllProduitsPaginated);
 router.get('/random', produitController.getRandomProduits);
 router.get('/categorie/:categorieId', produitController.getProduitsByCategorie);
 router.get('/boutique/:boutiqueId', produitController.getProduitByBoutique);
 router.get('/categorie/:categorieId/boutique/:boutiqueId', produitController.getProduitByCategorieAndBoutique);
 router.get('/:id', produitController.getProduitById);
-router.post('/create', authMiddleware, roleMiddleware(ROLES.CLIENT), produitController.createProduit);
+// router.post('/create', authMiddleware, roleMiddleware(ROLES.CLIENT), produitController.createProduit);
 router.put('/update/:id', authMiddleware, roleMiddleware(ROLES.CLIENT), produitController.updateProduit);
+
+router.post('/create', produitController.createProduit);
+
 
 module.exports = router;

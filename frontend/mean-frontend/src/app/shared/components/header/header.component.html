@@ -1,0 +1,27 @@
+<header class="nxl-header">
+    <div class="header-wrapper">
+        <!--! [Start] Header Left !-->
+        <div class="header-left d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center">
+                 <span class="nxl-micon">
+                 <i [attr.data-feather]="'user'"></i>
+                 </span>
+
+                <span class="nxl-mtext">{{ username }}</span>
+            </div>
+        </div>
+        <!--! [End] Header Left !-->
+        <!--! [Start] Header Right !-->
+        <div class="header-right ms-auto">
+            <div class="d-flex align-items-center">
+                <a  class="dropdown-item"
+                    (click)="logout()">
+                    <i [attr.data-feather]="'log-out'"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+        <!--! [End] Header Right !-->
+
+    </div>
+</header>

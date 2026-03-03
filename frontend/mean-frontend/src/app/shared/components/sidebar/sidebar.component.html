@@ -3,9 +3,8 @@
 
     <!-- Logo -->
     <div class="m-header">
-      <a routerLink="/admin">
-        <img [src]="logoUrl" class="logo logo-lg" alt="Logo">
-      </a>
+      <i [attr.data-feather]="'user'"></i>
+      <span class="nxl-mtext"> {{ username }} </span>
     </div>
 
     <!-- Menu -->
@@ -40,6 +39,18 @@
             </li>
           </ul>
 
+        </li>
+        <li class="nxl-item">
+          <a class="nxl-link"
+             (click)="logout()" style="cursor: pointer;" >
+
+            <!-- Parent icon -->
+            <span class="nxl-micon">
+              <i data-feather="log-out"></i>
+            </span>
+
+            <span class="nxl-mtext">Log-out</span>
+          </a>
         </li>
       </ul>
     </div>
