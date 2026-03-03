@@ -10,3 +10,30 @@ exports.createEtage = async (data) => {
     });
     return etage;
 }
+exports.getAllEtages = async () => {
+  return await Etage
+    .find()
+};
+
+exports.getAllEtagesPaginated = async (page = 1, limit = 2) => {
+  const skip = (page - 1) * limit;
+
+  const [etages, total] = await Promise.all([
+    Etage.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ createdAt: -1 }),
+
+    Etage.countDocuments()
+  ]);
+
+  return {
+    data: etages,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    }
+  };
+};

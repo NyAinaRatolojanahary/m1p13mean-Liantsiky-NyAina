@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="col-xl-6">
+    <div class="card stretch stretch-full">
+      <div class="card-body">
+
+        <h4 class="mb-4">Créer un utilisateur boutique</h4>
+
+        <form [formGroup]="shopUserForm" (ngSubmit)="submit()">
+
+            <app-form-input
+            label="Nom"
+            placeholder="Nom"
+            [required]="true"
+            [control]="shopUserForm.controls.nom">
+            </app-form-input>
+
+            <app-form-input
+            label="Prénom"
+            placeholder="Prénom"
+            [required]="true"
+            [control]="shopUserForm.controls.prenom">
+            </app-form-input>
+
+            <app-form-input
+            label="Date de naissance"
+            placeholder="Date de naissance"
+            type = "date"
+            [required]="true"
+            [control]="shopUserForm.controls.dtn">
+            </app-form-input>
+
+            <app-form-input
+                label="Email"
+                placeholder="Email"
+                [required]="true"
+                [control]="shopUserForm.controls.email">
+            </app-form-input>
+
+            <app-form-input
+                label="Mot de passe"
+                placeholder="Mot de passe"
+                type = "password"
+                [required]="true"
+                [control]="shopUserForm.controls.password">
+            </app-form-input>
+
+         
+          <button class="btn btn-primary">
+            Enregistrer
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

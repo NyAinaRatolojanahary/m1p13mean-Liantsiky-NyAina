@@ -88,7 +88,88 @@ export const routes: Routes = [
             path: 'etage/create',
             loadComponent: () =>
             import('./features/admin/etage/pages/etage-form/etage-form.component')
-            .then(m => m.EtageFormComponent)
+            .then(m => m.EtageFormComponent),
+            runGuardsAndResolvers: 'always'
+
+        },
+        {
+            path: 'etage/list',
+            loadComponent: () =>
+            import('./features/admin/etage/pages/etage-list/etage-list.component')
+            .then(m => m.EtageListComponent),
+            runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'box/create',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-form/box-form.component')
+            .then(m => m.BoxFormComponent),
+              runGuardsAndResolvers: 'always'
+
+        },
+        {
+            path: 'box/list',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-list/box-list.component')
+            .then(m => m.BoxListComponent),
+              runGuardsAndResolvers: 'always'
+
+        },
+        {
+            path: 'box-loyer/:id',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-loyer-form/box-loyer-form.component')
+            .then(m => m.BoxLoyerFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'box/contrat/create',
+            loadComponent: () =>
+            import('./features/admin/box/pages/box-contrat-form/box-contrat-form.component')
+            .then(m => m.BoxContratFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'userShop/create',
+            loadComponent: () =>
+            import('./features/admin/shopUser/pages/shop-user-form/shop-user-form.component')
+            .then(m => m.ShopUserFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'user/list',
+            loadComponent: () =>
+            import('./features/admin/shopUser/pages/shop-user-list/shop-user-list.component')
+            .then(m => m.ShopUserListComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'boutique/create',
+            loadComponent: () =>
+            import('./features/admin/boutique/pages/boutique-form/boutique-form.component')
+            .then(m => m.BoutiqueFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'boutique/list',
+            loadComponent: () =>
+            import('./features/admin/boutique/pages/boutique-list/boutique-list.component')
+            .then(m => m.BoutiqueListComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'categorie-produit/create',
+            loadComponent: () =>
+            import('./features/admin/categorieProduit/pages/categorie-form/categorie-form.component')
+            .then(m => m.CategorieFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+            path: 'categorie-produit/list',
+            loadComponent: () =>
+            import('./features/admin/categorieProduit/pages/categorie-list/categorie-list.component')
+            .then(m => m.CategorieListComponent),
+              runGuardsAndResolvers: 'always'
         }
 
     ]

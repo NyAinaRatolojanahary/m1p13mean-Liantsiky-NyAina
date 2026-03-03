@@ -74,6 +74,19 @@
                   "maximumError": "8kB"
                 }
               ],
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+
+            ],
+            "scripts": [
+              "src/assets/template/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "budgets": [],
               "outputHashing": "all"
             },
             "development": {
@@ -86,6 +99,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "allowedHosts": [
+              "all"
+            ],
+            "proxyConfig": "proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "mean-frontend:build:production"

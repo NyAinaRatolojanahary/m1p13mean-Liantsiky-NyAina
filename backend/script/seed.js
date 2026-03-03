@@ -11,6 +11,14 @@ db.boxes.deleteMany({})
 db.boutiques.deleteMany({})
 db.categorieproduits.deleteMany({})
 db.produits.deleteMany({})
+db.statusdisponibilites.deleteMany({})
+db.loyerboxes.deleteMany({})
+db.statustraitements.deleteMany({})
+db.statuscontrats.deleteMany({})
+db.statusdisponibilites.deleteMany({})
+db.statusactives.deleteMany({})
+db.modepaiements.deleteMany({})
+
 
 // =======================================
 // ROLES
@@ -20,7 +28,6 @@ db.roles.insertMany([
   { _id: ObjectId("69941343dc3e77fec38de667"), nom: "Boutique", status: 10 },
   { _id: ObjectId("69941343dc3e77fec38de668"), nom: "Admin", status: 20 }
 ])
-
 // =======================================
 // UTILISATEURS
 // Mot de passe: sababacute
@@ -165,5 +172,47 @@ boutiques.forEach(boutique => {
     }
   })
 })
+
+// =======================================
+// STATUS TRAITEMENT
+// =======================================
+db.statustraitements.insertMany([
+  {  nom: "En cours", code: 10 },
+  {  nom: "Termine", code: 20 }
+])
+
+// =======================================
+// STATUS CONTRAT
+// =======================================
+db.statuscontrats.insertMany([
+  {  nom: "Non pate", code: 0 },
+  {  nom: "Paye", code: 10 }
+])
+
+// =======================================
+// STATUS DISPONIBILITE
+// =======================================
+db.statusdisponibilites.insertMany([
+  {  nom: "Disponible", code: 10 },
+  {  nom: "Occupe", code: 20 },
+  { nom: "En maintenance", code: 30 }
+])
+
+// =======================================
+// STATUS ACTIVE
+// =======================================
+db.statusactives.insertMany([
+  {  nom: "Active", code: 0 },
+  {  nom: "Desactive", code: 10 }
+])
+
+// =======================================
+// MODE PAIEMENT
+// =======================================
+db.modepaiements.insertMany([
+  {  nom: "Mvola" },
+  {  nom: "OrangeMoney" }
+])
+
 
 print("✅ SEED TERMINE AVEC SUCCES")

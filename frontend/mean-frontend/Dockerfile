@@ -12,7 +12,7 @@ RUN npm install
 FROM deps AS dev
 COPY . .
 EXPOSE 4200
-CMD ["npm", "start"]
+CMD ["ng", "serve", "--host", "0.0.0.0", "--proxy-config", "proxy.conf.json"]
 
 # ---- build ----
 FROM deps AS build

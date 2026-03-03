@@ -1,10 +1,14 @@
-const Boutique = require('../models/Boutique');
 const mongoose = require('mongoose');
+const Boutique = require('../models/Boutique');
+const Box = require('../models/Box');
+const StatusDisponibilite = require('../models/StatusDisponibilite');
+const StatusActive = require('../models/StatusActive');
 
 exports.getAllBoutique = async () => {
   return await Boutique.find()
     .populate('proprietaireId')
     .populate('boxId')
+    .populate('status')
     .sort({ dateCreation: -1 });
 };
 
@@ -15,6 +19,7 @@ exports.getAllBoutiquePaginated = async (page = 1, limit = 10) => {
     Boutique.find()
       .populate('proprietaireId')
       .populate('boxId')
+      .populate('status')
       .skip(skip)
       .limit(limit)
       .sort({ dateCreation: -1 }),
@@ -48,12 +53,27 @@ exports.getBoutiquePerStage = async (idStage) => {
 };
 
 exports.createBoutique = async (data) => {
+  
+  const activeStatus = await StatusActive.findOne({
+      code: 10
+    });
+    
+    if (!activeStatus) {
+        throw new Error("Status active introuvable");
+      }
+      
+    // await Box.findByIdAndUpdate(
+    //     data.boxId,
+    //     { status: activeStatus._id }
+    //   );
+
+  //create the boutique
   const boutique = await Boutique.create({
     nom: data.nom,
     description: data.description,
     proprietaireId: data.proprietaireId,
-    boxId: data.boxId,
-    status: data.status || 0
+    boxId: null,
+    status: activeStatus._id
   });
 
   return boutique;

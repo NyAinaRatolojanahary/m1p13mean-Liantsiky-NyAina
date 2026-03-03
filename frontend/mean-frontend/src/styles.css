@@ -9,3 +9,8 @@
 .ui-button .ui-icon {
     background-image: none !important;
 }
+/* In src/styles.css */
+/* @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css'; */
+
+/* Your custom styles below */

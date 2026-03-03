@@ -98,3 +98,28 @@ exports.updateUserInfo = async (req, res) => {
     res.status(500).json({ message: err.message});
   }
 }
+
+exports.getAllShopUsersPaginated = async (req, res) => {
+  try {
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    const result = await utilisateurService.getAllShopUserPaginated(
+      page,
+      limit
+    );
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+exports.getAllShopUsers = async (req, res) => {
+  try {
+    const users = await utilisateurService.getAllShopUser();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+   }
+}

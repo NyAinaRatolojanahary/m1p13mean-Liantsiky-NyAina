@@ -1,9 +1,11 @@
 const boxService = require('../services/boxService');
+const loyerBoxService = require('../services/loyerBoxService');
+const contratBoxService = require('../services/contratBoxService');
 
 exports.getAllBoxes = async (req, res) => {
   try {
     const data = await boxService.getAllBoxes();
-    res.status(200).json({ success: true, data });
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -26,7 +28,7 @@ exports.getBoxesPerStage = async (req, res) => {
   try {
     const data = await boxService.getBoxesPerStage(req.params.idStage);
 
-    res.status(200).json({ success: true, data });
+    res.status(200).json(data);
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
@@ -35,11 +37,11 @@ exports.getBoxesPerStage = async (req, res) => {
 exports.createBox = async (req, res) => {
   try {
     const box = await boxService.createBox(req.body);
-
     res.status(201).json({
       success: true,
       data: box
     });
+    
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -47,7 +49,8 @@ exports.createBox = async (req, res) => {
 
 exports.updateBox = async (req, res) => {
   try {
-    const result = await boxService.updateBox(req.params.id, req.body);
+    const  {dateApplication, ...updates} = req.body;
+    const result = await boxService.updateBox(req.params.id, updates, dateApplication);
 
     res.status(200).json({
       success: true,
@@ -72,6 +75,45 @@ exports.getBoxByID = async (req, res) => {
       return res.status(404).json({ success: false, message: error.message });
     }
 
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.createStatusDisponibilite = async (req, res) => {
+  try {
+    const status = await boxService.createStatusDisponibilite(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: status
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.createStatusContrat = async (req, res) => {
+  try {
+    const status = await contratBoxService.createStatusContrat(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: status
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+exports.createContratBox = async (req, res) => {
+  try {
+    const contrat = await contratBoxService.createContratBox(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: contrat
+    });
+  } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };

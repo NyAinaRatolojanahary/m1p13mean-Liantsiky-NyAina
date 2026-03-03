@@ -15,6 +15,7 @@ export class SidebarComponent implements AfterViewChecked{
 
   private featherLoaded = false;
   
+  
   // Reference to all arrow containers
   @ViewChildren('arrowContainer', { read: ElementRef }) arrowContainers!: QueryList<ElementRef>;
 
