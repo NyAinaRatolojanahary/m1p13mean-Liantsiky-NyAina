@@ -40,9 +40,8 @@ services:
       - ./frontend/mean-frontend:/app
       - ./frontend/mean-frontend/src/assets:/app/src/assets
       - /app/node_modules
-    command: npm start
+    # command: npm start
     user: "1000:1000"
-
 
 volumes:
   mongo_data:

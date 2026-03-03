@@ -1,1 +1,91 @@
-<p>buy-tokens works!</p>
+<div class="buy-tokens-container">
+    <h2>Acheter des Jetons</h2>
+    <p class="subtitle">Sélectionnez un pack de jetons pour recharger votre compte.</p>
+
+    <div *ngIf="isLoading" class="loading">
+        <i class="fa fa-spinner fa-spin"></i> Chargement des packs...
+    </div>
+
+    <div *ngIf="successMessage" class="alert alert-success">
+        <i class="fa fa-check-circle"></i> {{ successMessage }}
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!isLoading && !successMessage" class="purchase-grid">
+
+        <!-- Packages List -->
+        <div class="packages-section">
+            <h3>1. Choisissez votre pack</h3>
+            <div class="packages-list">
+                <div *ngFor="let jeton of jetons" class="package-card" [class.active]="selectedJeton?._id === jeton._id"
+                    (click)="selectJeton(jeton)">
+                    <div class="jeton-icon">
+                        <i class="fa fa-coins"></i>
+                    </div>
+                    <div class="jeton-info">
+                        <span class="jeton-name">{{ jeton.nom }}</span>
+                        <span class="jeton-price">{{ jeton.montant }} €</span>
+                    </div>
+                    <div class="selection-indicator">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Purchase Form -->
+        <div class="form-section">
+            <h3>2. Détails du paiement</h3>
+            <form (ngSubmit)="onSubmit()" #purchaseForm="ngForm">
+
+                <div class="form-group">
+                    <label>Quantité</label>
+                    <input type="number" [(ngModel)]="nombre" name="nombre" min="1" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mode de paiement *</label>
+                    <select [(ngModel)]="selectedModePaiement" name="modePaiement" class="form-control" required>
+                        <option value="">Sélectionnez un mode</option>
+                        <option *ngFor="let mode of modesPaiement" [value]="mode._id">
+                            {{ mode.designation }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Référence du virement *</label>
+                    <input type="text" [(ngModel)]="referenceVirement" name="reference" class="form-control"
+                        placeholder="Ex: TXN12345678" required>
+                    <small class="form-text text-muted">Veuillez indiquer le code fourni par votre banque.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Note (Optionnel)</label>
+                    <textarea [(ngModel)]="note" name="note" class="form-control" rows="2"></textarea>
+                </div>
+
+                <div class="summary" *ngIf="selectedJeton">
+                    <div class="summary-row">
+                        <span>Option sélectionnée :</span>
+                        <strong>{{ selectedJeton.nom }} x {{ nombre }}</strong>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total :</span>
+                        <strong>{{ selectedJeton.montant * nombre }} €</strong>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block"
+                    [disabled]="isSubmitting || !selectedJeton || !purchaseForm.valid">
+                    <span *ngIf="!isSubmitting">Confirmer l'achat</span>
+                    <span *ngIf="isSubmitting"><i class="fa fa-spinner fa-spin"></i> Envoi en cours...</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>

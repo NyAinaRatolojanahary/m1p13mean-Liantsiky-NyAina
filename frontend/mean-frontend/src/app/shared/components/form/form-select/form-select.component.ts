@@ -1,22 +1,47 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { NgSelectComponent } from '@ng-select/ng-select';
-
-
-
-
-export interface SelectOption {
-  label: string;
-  value: string;
-  dataBg?: string;
-}
 
 @Component({
   selector: 'app-form-select',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,NgSelectComponent],
-  templateUrl: './form-select.component.html',
+  imports: [CommonModule, ReactiveFormsModule],
+  template: `
+    <div class="mb-3">
+      <label *ngIf="label" class="form-label">
+        {{ label }}
+        <span *ngIf="required" class="text-danger">*</span>
+      </label>
+      <select 
+        [formControl]="control" 
+        class="form-select custom-select">
+        <option value="" disabled selected>{{ placeholder }}</option>
+        <option *ngFor="let opt of options" [value]="opt[optionValue]">
+          {{ opt[optionLabel] }}
+        </option>
+      </select>
+    </div>
+  `,
+  styles: [`
+    .custom-select {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+        -moz-padding-start: calc(0.75rem - 3px);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 0.375rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        appearance: none;
+    }
+  `]
 })
 export class FormSelectComponent {
   @Input() label!: string;
@@ -24,43 +49,6 @@ export class FormSelectComponent {
   @Input() required: boolean = false;
   @Input() control!: FormControl;
   @Input() options: any[] = [];
-
-  // which property to display
   @Input() optionLabel = 'label';
-
-  // which property is sent as value
   @Input() optionValue = 'value';
-
-  // ===== INTERNAL VALUE =====
-  value: any;
-
-  disabled = false;
-
-  // ===== ControlValueAccessor =====
-  onChange = (_: any) => {};
-  onTouched = () => {};
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  // ===== EVENT =====
-  change(event: Event) {
-    const val = (event.target as HTMLSelectElement).value;
-    this.value = val;
-    this.onChange(val);
-    this.onTouched();
-  }
 }

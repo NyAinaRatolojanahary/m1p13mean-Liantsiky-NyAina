@@ -16,7 +16,7 @@ const shopRouter = require('./routes/boutiqueRoute');
 const productRouter = require('./routes/produitRoute');
 const etageRouter = require('./routes/etageRoute');
 const buyRouter = require('./routes/achatRoute');
-const walletRouter = require('./routes/');
+const walletRouter = require('./routes/portefeuille');
 const jetonRouter = require('./routes/jetonRoute');
 const modePaiementRouter = require('./routes/modePaiementRoute');
 
@@ -55,27 +55,22 @@ app.use(express.json());
 
 
 
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
-app.use('/uploads', express.static('uploads'));
-app.use('/product-category', productCategorieRouter);
-app.use('/stage', stageRouter);
-app.use('/box', boxRouter);
-app.use('/shop', shopRouter);
-app.use('/product', productRouter);
-app.use('/buy', buyRouter);
-app.use('/wallet', walletRouter);
+app.use('/api/uploads', express.static('uploads'));
 app.use('/api/product-category', productCategorieRouter);
+app.use('/api/etage', etageRouter);
 app.use('/api/box', boxRouter);
 app.use('/api/shop', shopRouter);
 app.use('/api/product', productRouter);
-app.use('/api/etage', etageRouter);
-app.use('/api/jeton',jetonRouter);
-app.use('/api/modePaiement',modePaiementRouter);
+app.use('/api/buy', buyRouter);
+app.use('/api/wallet', walletRouter);
+app.use('/api/jeton', jetonRouter);
+app.use('/api/modePaiement', modePaiementRouter);
 
 
-app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => {
-    resp.setHeader('Content-Type','text/plain');
+app.get('/test/:nbr', authMiddlware, roleMiddlware(ROLES.CLIENT), (req, resp) => {
+    resp.setHeader('Content-Type', 'text/plain');
     resp.send("Bonjour sur le test : " + req.params.nbr);
 });
 
@@ -93,6 +88,6 @@ app.use((req, res) => {
 // });
 
 // Start server
-app.listen(PORT,'0.0.0.0', () => 
+app.listen(PORT, '0.0.0.0', () =>
     console.log(`Serveur demarre sur le port ${PORT}`)
 );

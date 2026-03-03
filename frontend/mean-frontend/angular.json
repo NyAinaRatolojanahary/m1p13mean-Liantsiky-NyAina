@@ -24,7 +24,7 @@
               {
                 "glob": "**/*",
                 "input": "public",
-                "output":"assets/template"
+                "output": "assets/template"
               },
               "src/assets",
               "src/favicon.ico"
@@ -33,7 +33,6 @@
               "src/styles.css",
               "src/assets/template/css/bootstrap.min.css",
               "src/assets/template/css/theme.min.css",
-              "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/font-awesome.min.css",
               "src/assets/css/elegant-icons.css",
@@ -53,15 +52,15 @@
               "src/assets/js/mixitup.min.js",
               "src/assets/js/owl.carousel.min.js",
               "src/assets/js/main.js"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -73,21 +72,7 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "node_modules/@ng-select/ng-select/themes/default.theme.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-
-            ],
-            "scripts": [
-              "src/assets/template/js/bootstrap.min.js"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "budgets": [],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
@@ -100,6 +85,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "host": "0.0.0.0",
+            "port": 4200,
             "allowedHosts": [
               "all"
             ],
