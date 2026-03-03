@@ -23,6 +23,6 @@ COPY backend/ .
 # THE "DIST" STEP:
 # This copies the finished Angular website into a 'public' folder in your backend
 # The '*' handles the project name automatically
-COPY --from=build-stage /app/frontend/dist/mean-frontend/browser ./public
+COPY --from=build-stage /app/frontend/dist/mean-frontend ./public
 EXPOSE 3000
 CMD ["node", "index.js"]
