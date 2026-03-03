@@ -75,11 +75,22 @@ app.get('/test/:nbr', authMiddlware, roleMiddlware(ROLES.CLIENT), (req, resp) =>
 });
 
 // Serve Angular static files
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, 'public');
+if (require('fs').existsSync(publicPath)) {
+    app.use(express.static(publicPath));
+}
 
 // Angular routing fallback (SPA support)
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    const indexPath = path.join(__dirname, 'public', 'index.html');
+    if (require('fs').existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.status(200).json({
+            message: "Backend is running. (Frontend build not found in public/)",
+            env: process.env.NODE_ENV
+        });
+    }
 });
 
 // 404

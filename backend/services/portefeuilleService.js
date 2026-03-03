@@ -6,10 +6,13 @@ exports.getSolde = async (userId) => {
 };
 
 exports.crediter = async (userId, montant) => {
-  const portefeuille = await Portefeuille.findOne({ userId });
+  let portefeuille = await Portefeuille.findOne({ userId });
   if (!portefeuille) {
-    // Create wallet if doesn't exist? (Usually created at registration)
-    throw new Error('Portefeuille introuvable');
+    // Create wallet if it doesn't exist
+    portefeuille = await Portefeuille.create({
+      userId,
+      solde_actuel: 0
+    });
   }
 
   portefeuille.solde_actuel += montant;

@@ -3,7 +3,7 @@ import { Injectable, signal, computed } from '@angular/core';
 export interface CartItem {
   id: string;
   name: string;
-  price: number;
+  prixActuel: number;
   image: string;
   quantity: number;
 }
@@ -14,7 +14,7 @@ export interface CartItem {
 export class CartService {
   private cartItems = signal<CartItem[]>([]);
   public cartItems$ = computed(() => this.cartItems());
-  public cartTotal$ = computed(() => this.cartItems().reduce((total, item) => total + (item.price * item.quantity), 0));
+  public cartTotal$ = computed(() => this.cartItems().reduce((total, item) => total + (item.prixActuel * item.quantity), 0));
   public cartCount$ = computed(() => this.cartItems().reduce((count, item) => count + item.quantity, 0));
 
   constructor() {

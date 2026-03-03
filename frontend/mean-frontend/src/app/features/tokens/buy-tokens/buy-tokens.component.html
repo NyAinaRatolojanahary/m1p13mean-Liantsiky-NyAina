@@ -27,7 +27,7 @@
                     </div>
                     <div class="jeton-info">
                         <span class="jeton-name">{{ jeton.nom }}</span>
-                        <span class="jeton-price">{{ jeton.montant }} €</span>
+                        <span class="jeton-price">{{ jeton.montant }} Ar</span>
                     </div>
                     <div class="selection-indicator">
                         <i class="fa fa-check-circle"></i>
@@ -51,7 +51,7 @@
                     <select [(ngModel)]="selectedModePaiement" name="modePaiement" class="form-control" required>
                         <option value="">Sélectionnez un mode</option>
                         <option *ngFor="let mode of modesPaiement" [value]="mode._id">
-                            {{ mode.designation }}
+                            {{ mode.nom }}
                         </option>
                     </select>
                 </div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="summary-row total">
                         <span>Total :</span>
-                        <strong>{{ selectedJeton.montant * nombre }} €</strong>
+                        <strong>{{ selectedJeton.montant * nombre }} Ar</strong>
                     </div>
                 </div>
 

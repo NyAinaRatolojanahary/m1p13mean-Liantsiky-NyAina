@@ -80,3 +80,31 @@
   background-color: #cccccc;
   cursor: not-allowed;
 }
+
+.toggle-mode {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.toggle-mode p {
+  font-size: 14px;
+  color: #666;
+}
+
+.toggle-mode a {
+  color: #7fad39;
+  font-weight: 700;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.toggle-mode a:hover {
+  text-decoration: underline;
+}
+
+.error-msg {
+  color: #dd2222;
+  font-size: 13px;
+  margin-bottom: 15px;
+  text-align: center;
+}
