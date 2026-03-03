@@ -74,7 +74,7 @@ app.get('/test/:nbr', authMiddlware,roleMiddlware(ROLES.CLIENT), (req, resp) => 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Angular routing fallback (SPA support)
-app.get('*', (req, res) => {
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
