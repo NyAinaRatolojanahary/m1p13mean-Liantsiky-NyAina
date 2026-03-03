@@ -1,0 +1,25 @@
+<div class="col-lg-3">
+  <div class="product__discount__item">
+      <div class="product__discount__item__pic set-bg"
+          [ngStyle]="{'background-image': 'url(' + image + ')'}" alt="Product Image">
+          <div class="product__discount__percent">
+              -{{ discount }}%
+          </div>
+
+          <ul class="product__item__pic__hover">
+              <li>
+                  <a [routerLink]="['/details', id]">
+                      <i class="fa fa-shopping-cart"></i>
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <div class="product__discount__item__text">
+          <span>{{ category }}</span>
+          <h5><a [routerLink]="['/details', id]">{{ name }}</a></h5>
+          <div class="product__item__price">
+              {{ price }} Ar
+          </div>
+      </div>
+  </div>
+</div>

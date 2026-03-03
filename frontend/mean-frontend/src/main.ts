@@ -1,11 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
+import { provideRouter } from '@angular/router';
+import { register } from 'swiper/element/bundle';
+import { provideHttpClient } from '@angular/common/http';
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap-icons/font/bootstrap-icons.css';
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-// import '@ng-select/ng-select';
+register();
 
-bootstrapApplication(AppComponent, appConfig)
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes), provideHttpClient()]
+})
   .catch((err) => console.error(err));

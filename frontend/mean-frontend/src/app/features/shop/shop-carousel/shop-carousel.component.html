@@ -1,0 +1,18 @@
+<section class="categories" style="padding-top: 30px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Nos Boutiques</h2>
+        </div>
+        <div class="row">
+            <div class="shops__slider owl-carousel">
+                @for (shop of shops; track shop._id) {
+                <div class="col-lg-3">
+                    <div class="categories__item set-bg" style="background-image: url('img/categories/cat-1.jpg')">
+                        <h5><a [routerLink]="['/shops', shop._id]">{{ shop.nom }}</a></h5>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

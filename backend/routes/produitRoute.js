@@ -7,6 +7,7 @@ const roleMiddleware = require('../middlewares/roleMiddleware');
 
 router.get('/', produitController.getAllProduits);
 router.get('/paginated', produitController.getAllProduitsPaginated);
+router.get('/random', produitController.getRandomProduits);
 router.get('/categorie/:categorieId', produitController.getProduitsByCategorie);
 router.get('/boutique/:boutiqueId', produitController.getProduitByBoutique);
 router.get('/categorie/:categorieId/boutique/:boutiqueId', produitController.getProduitByCategorieAndBoutique);

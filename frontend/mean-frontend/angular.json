@@ -23,14 +23,57 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output":"assets/template"
               },
-              "src/assets/template"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css",
               "src/assets/template/css/bootstrap.min.css",
               "src/assets/template/css/theme.min.css",
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/elegant-icons.css",
+              "src/assets/css/nice-select.css",
+              "src/assets/css/jquery-ui.min.css",
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/slicknav.min.css",
+              "src/assets/css/style.css"
+            ],
+            "scripts": [
+              "src/assets/template/js/bootstrap.min.js",
+              "src/assets/js/jquery-3.3.1.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/jquery.nice-select.min.js",
+              "src/assets/js/jquery-ui.min.js",
+              "src/assets/js/jquery.slicknav.js",
+              "src/assets/js/mixitup.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/main.js"
+            ],
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1MB",
+                  "maximumError": "2MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
@@ -97,8 +140,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
