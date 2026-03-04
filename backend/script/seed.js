@@ -74,7 +74,7 @@ db.utilisateurs.insertMany([
     password: '$2b$10$WqvXMVo09eTGpKwZqcTkU.3SWpgAYasVT.PnoXKARHP0XP7Eh3Nxq',
     role: ObjectId('69941343dc3e77fec38de666'),
     dateCreation: new Date()
-  }
+  },
 
   // BOUTIQUES (15 pour correspondre aux 15 box)
   ...Array.from({ length: 15 }, (_, i) => ({
@@ -90,17 +90,17 @@ db.utilisateurs.insertMany([
   })),
 
   // ADMINS
-  ...Array.from({ length: 5 }, (_, i) => ({
+  {
     nom: "Admin",
     prenom: "Admin" + (i + 1),
     dtn: new Date("1985-01-01"),
-    email: "admin" + (i + 1) + "@test.com",
+    email: "admin@itu.com",
     telephone: "032000000" + i,
     adresse: "Antananarivo",
-    password: "$2b$10$C.PuvhAqEUmycKn7khxVAe2aFv.Ggf.HqaFF/O1AgnIchS.FgUpiq",
+    password: "$2b$10$NAlsKJyqhP91U/POizhPzOzZhloUPT9Vdd3R8jBo5ciZbYkvAQ.iG",
     role: ObjectId("69941343dc3e77fec38de668"),
     dateCreation: new Date()
-  }))
+  }
 
 ])
 

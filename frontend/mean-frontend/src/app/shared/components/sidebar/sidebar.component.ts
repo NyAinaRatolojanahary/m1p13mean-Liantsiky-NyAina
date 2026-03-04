@@ -42,10 +42,11 @@ export class SidebarComponent implements AfterViewChecked{
   ngOnInit(): void {
     this.username = localStorage.getItem('username') || 'Admin';
   }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/admin/login']);
   }
   
 }
