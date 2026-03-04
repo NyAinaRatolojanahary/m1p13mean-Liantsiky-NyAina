@@ -63,6 +63,18 @@ db.utilisateurs.insertMany([
     role: ObjectId("69941343dc3e77fec38de666"),
     dateCreation: new Date()
   },
+  {
+    _id: ObjectId('69a75652be443a45718bcbea'),
+    nom: 'University',
+    prenom: 'IT',
+    dtn: ISODate('2012-12-12T00:00:00.000Z'),
+    email: 'itu@itu.com',
+    telephone: "0383803838",
+    addresse: "Andoharanofotsy",
+    password: '$2b$10$WqvXMVo09eTGpKwZqcTkU.3SWpgAYasVT.PnoXKARHP0XP7Eh3Nxq',
+    role: ObjectId('69941343dc3e77fec38de666'),
+    dateCreation: new Date()
+  }
 
   // BOUTIQUES (15 pour correspondre aux 15 box)
   ...Array.from({ length: 15 }, (_, i) => ({
@@ -111,6 +123,8 @@ etages.forEach(etage => {
   for (let i = 1; i <= 5; i++) {
     db.boxes.insertOne({
       nom: "Box " + i + " - " + etage.nom,
+      espacem2: 80,
+      loyer: 800000,
       etageId: etage._id,
       dateCreation: new Date()
     })

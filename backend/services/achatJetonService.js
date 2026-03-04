@@ -51,6 +51,7 @@ exports.acheterJeton2 = async (data) => {
     if (!statusPending) throw new Error("Status 'En cours' introuvable");
 
     let montantTotal = 0;
+    let totalJetons = 0;
     const jetonsItems = [];
 
     for (const item of data.items) {
@@ -59,6 +60,7 @@ exports.acheterJeton2 = async (data) => {
 
         const total = jeton.montant * item.nombre;
         montantTotal += total;
+        totalJetons += total; // Assuming jeton.montant is the number of tokens
 
         jetonsItems.push({
             jetonId: jeton._id,
@@ -73,10 +75,14 @@ exports.acheterJeton2 = async (data) => {
         modePaiementId: data.modePaiementId,
         referenceVirement: data.referenceVirement,
         note: data.note,
-        status: statusPending._id,
+        status: statusTermine._id,
+        dateTraiter: new Date(),
         jetons: jetonsItems,
         montantTotal: montantTotal
     });
+
+    // Credit the wallet
+    await portefeuilleService.crediter(userId, totalJetons);
 
     return achatJeton;
 };

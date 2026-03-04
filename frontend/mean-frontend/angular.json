@@ -61,9 +61,7 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "budgets": [
-
-              ]
+              "budgets": []
             },
             "development": {
               "optimization": false,
