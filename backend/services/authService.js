@@ -47,7 +47,8 @@ exports.login = async (email, password) => {
             status: user.role.status
         }
       },
-      process.env.JWT_SECRET,
+      // process.env.JWT_SECRET,
+      "myTemporarySecretKey",
       { expiresIn: process.env.JWT_EXPIRES_IN || "24h" }
     );
 

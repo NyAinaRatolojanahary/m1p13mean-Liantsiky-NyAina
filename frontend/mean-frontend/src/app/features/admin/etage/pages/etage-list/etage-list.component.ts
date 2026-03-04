@@ -19,8 +19,7 @@ export class EtageListComponent implements OnInit {
   loading = false;
     
   columns = [
-    { header: 'Nom', field: 'nom' },
-    { header: 'Nombre de box', field: 'nombreBox' }
+    { header: 'Nom', field: 'nom' }
   ];
 
   page = 1;

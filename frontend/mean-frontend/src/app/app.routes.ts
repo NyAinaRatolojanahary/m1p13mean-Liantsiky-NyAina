@@ -74,6 +74,12 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./features/admin/log-in/pages/log-in/log-in.component')
+      .then(m => m.LogInComponent)
+  },
+  {
         path: 'admin',
         component: AdminLayoutComponent,
         children: [
@@ -170,7 +176,43 @@ export const routes: Routes = [
             import('./features/admin/categorieProduit/pages/categorie-list/categorie-list.component')
             .then(m => m.CategorieListComponent),
               runGuardsAndResolvers: 'always'
+        },
+        {
+          path: 'mode-paiement/create',
+            loadComponent: () =>
+            import('./features/admin/modePaiement/pages/mode-form/mode-form.component')
+            .then(m => m.ModeFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+          path: 'mode-paiement/list',
+            loadComponent: () =>
+            import('./features/admin/modePaiement/pages/mode-list/mode-list.component')
+            .then(m => m.ModeListComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+          path: 'jeton/list',
+            loadComponent: () =>
+            import('./features/admin/jeton/pages/jeton-list/jeton-list.component')
+            .then(m => m.JetonListComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+          path: 'jeton/create',
+            loadComponent: () =>
+            import('./features/admin/jeton/pages/jeton-form/jeton-form.component')
+            .then(m => m.JetonFormComponent),
+              runGuardsAndResolvers: 'always'
+        },
+        {
+          path: 'demande-jeton/list',
+            loadComponent: () =>
+            import('./features/admin/jeton/pages/traitement-demande/traitement-demande.component')
+            .then(m => m.TraitementDemandeComponent),
+              runGuardsAndResolvers: 'always'
         }
+
 
     ]
   }

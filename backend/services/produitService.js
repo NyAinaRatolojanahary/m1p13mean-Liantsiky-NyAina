@@ -1,5 +1,6 @@
 const Produit = require('../models/Produit');
 const mongoose = require('mongoose');
+const historiquePrixService = require('../services/historiquePrixProduitService');
 
 exports.getAllProduits = async () => {
   return await Produit.find()
@@ -93,6 +94,11 @@ exports.createProduit = async (data) => {
     categorieId: data.categorieId,
     boutiqueId: data.boutiqueId
   });
+
+  const historique = await historiquePrixService.createHistoriquePrixProduit(
+    produit._id,
+    produit.prix
+  );
 
   return produit;
 };

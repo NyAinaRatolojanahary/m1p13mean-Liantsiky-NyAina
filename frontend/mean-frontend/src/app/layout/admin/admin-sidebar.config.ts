@@ -37,6 +37,23 @@ export const ADMIN_MENU: SidebarItem[] = [
     ]
   },
   {
+    label: 'Jeton',
+    icon: 'dollar-sign',
+    children: [
+      { label: 'Creer', route: '/admin/jeton/create' },
+      { label: 'Liste', route: '/admin/jeton/list' },
+      { label: 'Traiter demandes', route: '/admin/demande-jeton/list' },
+    ]
+  },
+  {
+    label: 'Mode paiement',
+    icon: 'credit-card',
+    children: [
+      { label: 'Creer', route: '/admin/mode-paiement/create' },
+      { label: 'Liste', route: '/admin/mode-paiement/list' }
+    ]
+  },
+  {
     label: 'Utilisateur',
     icon: 'users',
     children: [
