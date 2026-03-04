@@ -21,8 +21,8 @@ export class LogInComponent {
   ) {}
   
   loginForm = new FormGroup({
-    email : new FormControl,
-    password : new FormControl
+    email : new FormControl('admin@itu.com'),
+    password : new FormControl('admin')
   })
 
   onSubmit() {
