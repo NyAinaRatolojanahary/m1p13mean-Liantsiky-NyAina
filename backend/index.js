@@ -28,7 +28,8 @@ const PORT = process.env.PORT || 3000;
 const frontEndOrigin = [
     "http://0.0.0.0:4200",
     "http://localhost:4200",
-    "http://127.0.0.1:4200"
+    "http://127.0.0.1:4200",
+    "https://m1p13mean-liantsiky-nyaina.onrender.com"
 ];
 
 const corpsOptions = {
